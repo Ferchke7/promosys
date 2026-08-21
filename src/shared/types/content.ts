@@ -55,6 +55,8 @@ export interface ResultItem {
 export interface AudienceItem extends ContentCard {
   number: string;
   tags: string[];
+  scale: string;
+  roles: string[];
 }
 
 export interface FaqItem {
@@ -78,3 +80,17 @@ export interface LeadFormData {
 }
 
 export type LeadFormErrors = Partial<Record<keyof LeadFormData, string>>;
+
+export interface LeadValidationMessages {
+  name: string;
+  company: string;
+  phone: string;
+  consent: string;
+}
+
+export interface TelegramMessageLabels {
+  heading: string;
+  name: string;
+  company: string;
+  phone: string;
+}

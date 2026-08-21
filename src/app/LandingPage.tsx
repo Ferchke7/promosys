@@ -10,10 +10,11 @@ import { WhyUs } from "@/src/features/why-us/WhyUs";
 import { Faq } from "@/src/features/faq/Faq";
 import { Contact } from "@/src/features/contact/Contact";
 import { Footer } from "@/src/features/footer/Footer";
+import { LocaleProvider } from "@/src/shared/i18n/LocaleProvider";
 
 export function LandingPage() {
   return (
-    <>
+    <LocaleProvider>
       <Header />
       <main>
         <Hero />
@@ -28,6 +29,6 @@ export function LandingPage() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </LocaleProvider>
   );
 }

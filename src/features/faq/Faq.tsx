@@ -3,21 +3,24 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Plus } from "lucide-react";
-import { faqs } from "@/src/content/constants";
+import { useLocale } from "@/src/shared/i18n/LocaleProvider";
 import { Container } from "@/src/shared/ui/Container";
 import { Reveal } from "@/src/shared/ui/Reveal";
 import { SectionHeading } from "@/src/shared/ui/SectionHeading";
+import { faqContent } from "./content";
 
 export function Faq() {
+  const { locale } = useLocale();
+  const content = faqContent[locale];
   const [activeIndex, setActiveIndex] = useState(0);
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="section-pad bg-[#f8fafc]">
       <Container>
-        <Reveal><SectionHeading eyebrow="FAQ" title="Коротко о главном." description="Ответы на вопросы, которые чаще всего возникают перед первой встречей." /></Reveal>
+        <Reveal><SectionHeading eyebrow={content.eyebrow} title={content.title} description={content.description} /></Reveal>
         <div className="mt-14 border-t border-slate-200">
-          {faqs.map((faq, index) => {
+          {content.items.map((faq, index) => {
             const isOpen = activeIndex === index;
             return (
               <div key={faq.question} className="border-b border-slate-200">

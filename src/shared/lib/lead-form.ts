@@ -1,4 +1,4 @@
-import type { LeadFormData, LeadFormErrors } from "@/src/shared/types/content";
+import type { LeadFormData, LeadFormErrors, LeadValidationMessages, TelegramMessageLabels } from "@/src/shared/types/content";
 
 export function formatUzbekPhone(value: string) {
   const rawDigits = value.replace(/\D/g, "");
@@ -23,26 +23,40 @@ export function formatUzbekPhone(value: string) {
   return result;
 }
 
-export function validateLeadForm(data: LeadFormData): LeadFormErrors {
+const defaultValidationMessages: LeadValidationMessages = {
+  name: "Укажите имя",
+  company: "Укажите компанию",
+  phone: "Введите номер в формате +998",
+  consent: "Необходимо согласие",
+};
+
+const defaultTelegramLabels: TelegramMessageLabels = {
+  heading: "Новая заявка с сайта PROMSYS",
+  name: "Имя",
+  company: "Компания",
+  phone: "Телефон",
+};
+
+export function validateLeadForm(data: LeadFormData, messages: LeadValidationMessages = defaultValidationMessages): LeadFormErrors {
   const errors: LeadFormErrors = {};
   const phoneDigits = data.phone.replace(/\D/g, "");
 
-  if (data.name.trim().length < 2) errors.name = "Укажите имя";
-  if (data.company.trim().length < 2) errors.company = "Укажите компанию";
+  if (data.name.trim().length < 2) errors.name = messages.name;
+  if (data.company.trim().length < 2) errors.company = messages.company;
   if (phoneDigits.length !== 12 || !phoneDigits.startsWith("998")) {
-    errors.phone = "Введите номер в формате +998";
+    errors.phone = messages.phone;
   }
-  if (!data.consent) errors.consent = "Необходимо согласие";
+  if (!data.consent) errors.consent = messages.consent;
 
   return errors;
 }
 
-export function buildTelegramUrl(username: string, data: LeadFormData) {
+export function buildTelegramUrl(username: string, data: LeadFormData, labels: TelegramMessageLabels = defaultTelegramLabels) {
   const message = [
-    "Новая заявка с сайта PROMSYS",
-    `Имя: ${data.name.trim()}`,
-    `Компания: ${data.company.trim()}`,
-    `Телефон: ${data.phone}`,
+    labels.heading,
+    `${labels.name}: ${data.name.trim()}`,
+    `${labels.company}: ${data.company.trim()}`,
+    `${labels.phone}: ${data.phone}`,
   ].join("\n");
 
   return `https://t.me/${username}?text=${encodeURIComponent(message)}`;
