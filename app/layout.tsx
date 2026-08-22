@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { siteConfig } from "@/src/shared/config/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,29 +14,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://promsys.uz"),
-  title: "PROMSYS — умное управление производством",
-  description:
-    "MES, WMS и APS в единой системе для заводов и фабрик Узбекистана.",
-  keywords: ["MES", "WMS", "APS", "автоматизация производства", "Узбекистан"],
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  category: "technology",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
-  },
-  openGraph: {
-    title: "PROMSYS — производство под полным контролем",
-    description:
-      "Планирование, склад, качество и аналитика предприятия в едином цифровом контуре.",
-    type: "website",
-    locale: "ru_RU",
-    siteName: "PROMSYS",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "PROMSYS — производство под контролем" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PROMSYS — производство под полным контролем",
-    description: "MES, WMS и APS в единой системе для предприятий Узбекистана.",
-    images: ["/og.png"],
   },
 };
 

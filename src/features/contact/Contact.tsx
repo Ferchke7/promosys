@@ -42,6 +42,7 @@ export function Contact() {
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <a href={`tel:${contacts.phoneHref}`} className="contact-link"><Phone className="size-4" /><span><small>{content.phoneLabel}</small>{contacts.phone}</span></a>
             <a href={`mailto:${contacts.email}`} className="contact-link"><Mail className="size-4" /><span><small>Email</small>{contacts.email}</span></a>
+            <a href={`https://t.me/${contacts.telegramUsername}`} target="_blank" rel="noreferrer" className="contact-link sm:col-span-2 lg:col-span-1 xl:col-span-2"><MessageCircle className="size-4" /><span><small>Telegram</small>{contacts.telegram}</span></a>
           </div>
           <div className="mt-8 flex items-center gap-3 text-xs text-white/45"><ShieldCheck className="size-4 shrink-0 text-emerald-300" />{content.dataNotice}</div>
         </div>

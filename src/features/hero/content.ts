@@ -4,14 +4,23 @@ export interface HeroFactoryContent {
   ariaLabel: string;
   boardLabel: string;
   online: string;
-  effectLabel: string;
+  systemsLabel: string;
+  processLabel: string;
+  impactLabel: string;
+  impactCaption: string;
   before: string;
   after: string;
-  defect: string;
-  downtime: string;
-  plan: string;
   connected: string;
   systemRoles: [string, string, string];
+  processStages: [string, string, string, string];
+  metrics: [HeroFactoryMetric, HeroFactoryMetric, HeroFactoryMetric];
+}
+
+export interface HeroFactoryMetric {
+  label: string;
+  before: string;
+  after: string;
+  delta: string;
 }
 
 interface HeroContent {
@@ -42,14 +51,20 @@ export const heroContent: LocalizedContent<HeroContent> = {
       ariaLabel: "Объёмная модель предприятия: MES, WMS и APS снижают брак и простои",
       boardLabel: "ЦИФРОВОЙ КОНТУР · ЛИНИЯ 01",
       online: "ONLINE",
-      effectLabel: "Эффект после подключения",
+      systemsLabel: "Подключаем системы",
+      processLabel: "Единый производственный поток",
+      impactLabel: "Результат внедрения",
+      impactCaption: "Демонстрационный сценарий за 90 дней",
       before: "Было",
       after: "Стало",
-      defect: "Брак",
-      downtime: "Простои",
-      plan: "Выполнение плана",
       connected: "3 системы синхронизированы",
       systemRoles: ["операции и качество", "сырьё и склад", "план и мощности"],
+      processStages: ["Сырьё", "Производство", "Контроль", "Склад"],
+      metrics: [
+        { label: "Брак", before: "8,4%", after: "2,1%", delta: "−75%" },
+        { label: "Простои", before: "14,2%", after: "6,8%", delta: "−52%" },
+        { label: "Выполнение плана", before: "68%", after: "94%", delta: "+26%" },
+      ],
     },
   },
   uz: {
@@ -66,15 +81,20 @@ export const heroContent: LocalizedContent<HeroContent> = {
       ariaLabel: "MES, WMS va APS nuqson hamda to‘xtashlarni kamaytiradigan hajmli korxona modeli",
       boardLabel: "RAQAMLI KONTUR · LINIYA 01",
       online: "ONLINE",
-      effectLabel: "Ulangandan keyingi samara",
+      systemsLabel: "Tizimlarni ulaymiz",
+      processLabel: "Yagona ishlab chiqarish oqimi",
+      impactLabel: "Joriy etish natijasi",
+      impactCaption: "90 kunlik namoyish ssenariysi",
       before: "Oldin",
       after: "Keyin",
-      defect: "Nuqson",
-      downtime: "To‘xtash",
-      plan: "Reja bajarilishi",
       connected: "3 ta tizim sinxronlashtirildi",
       systemRoles: ["operatsiya va sifat", "xomashyo va ombor", "reja va quvvat"],
+      processStages: ["Xomashyo", "Ishlab chiqarish", "Nazorat", "Ombor"],
+      metrics: [
+        { label: "Nuqson", before: "8,4%", after: "2,1%", delta: "−75%" },
+        { label: "To‘xtash", before: "14,2%", after: "6,8%", delta: "−52%" },
+        { label: "Reja bajarilishi", before: "68%", after: "94%", delta: "+26%" },
+      ],
     },
   },
 };
-

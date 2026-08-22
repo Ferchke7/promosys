@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildTelegramUrl, formatUzbekPhone, validateLeadForm } from "../src/shared/lib/lead-form";
+import { contacts } from "../src/content/constants";
+
+test("uses the configured public contacts", () => {
+  assert.equal(contacts.phoneHref, "+998771176696");
+  assert.equal(contacts.email, "ferchke@yandex.ru");
+  assert.equal(contacts.telegramUsername, "promsys_uz");
+});
 
 test("formats Uzbekistan phone numbers", () => {
   assert.equal(formatUzbekPhone("901234567"), "+998 (90) 123-45-67");

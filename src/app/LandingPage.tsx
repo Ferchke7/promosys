@@ -11,24 +11,27 @@ import { Faq } from "@/src/features/faq/Faq";
 import { Contact } from "@/src/features/contact/Contact";
 import { Footer } from "@/src/features/footer/Footer";
 import { LocaleProvider } from "@/src/shared/i18n/LocaleProvider";
+import type { Locale } from "@/src/shared/i18n/types";
 
-export function LandingPage() {
+export function LandingPage({ locale }: { locale: Locale }) {
   return (
-    <LocaleProvider>
-      <Header />
-      <main>
-        <Hero />
-        <Problems />
-        <Features />
-        <Workflow />
-        <Results />
-        <Audience />
-        <CaseStudy />
-        <WhyUs />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
+    <LocaleProvider initialLocale={locale}>
+      <div lang={locale}>
+        <Header />
+        <main>
+          <Hero />
+          <Problems />
+          <Features />
+          <Workflow />
+          <Results />
+          <Audience />
+          <CaseStudy />
+          <WhyUs />
+          <Faq />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </LocaleProvider>
   );
 }

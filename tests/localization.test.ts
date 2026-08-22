@@ -9,6 +9,8 @@ test("provides complete Russian and Uzbek landing content", () => {
   for (const locale of ["ru", "uz"] as const) {
     assert.ok(heroContent[locale].title.length > 0);
     assert.equal(heroContent[locale].factory.systemRoles.length, 3);
+    assert.equal(heroContent[locale].factory.processStages.length, 4);
+    assert.equal(heroContent[locale].factory.metrics.length, 3);
     assert.equal(audienceContent[locale].items.length, 6);
     assert.ok(audienceContent[locale].items.every((item) => item.roles.length >= 4));
   }

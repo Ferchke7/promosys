@@ -3,11 +3,11 @@ import { createLandingMetadata } from "@/src/shared/seo/createLandingMetadata";
 import { createOrganizationSchema } from "@/src/shared/seo/createOrganizationSchema";
 import { StructuredData } from "@/src/shared/seo/StructuredData";
 
-const locale = "ru" as const;
+const locale = "uz" as const;
 
 export const metadata = createLandingMetadata(locale);
 
-export default function Home() {
+export default function UzbekHome() {
   return (
     <>
       <StructuredData data={createOrganizationSchema(locale)} />
