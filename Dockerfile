@@ -8,7 +8,7 @@ FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml .npmrc* ./
 RUN pnpm config set only-built-dependencies esbuild,sharp,workerd || true
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app
