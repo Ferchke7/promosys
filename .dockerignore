@@ -1,0 +1,9 @@
+node_modules
+.next
+.vinext
+.wrangler
+.pnpm-store
+dist
+.git
+.github
+*.log

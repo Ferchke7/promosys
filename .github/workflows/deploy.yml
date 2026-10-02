@@ -1,0 +1,207 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    name: Quality Checks (Lint & Test)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Corepack & pnpm 11.19.0
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.19.0 --activate
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run linter
+        run: pnpm lint
+
+      - name: Run test suite
+        run: pnpm test
+
+  build:
+    name: Docker Build & Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t promosys:ci -f Dockerfile .
+
+      - name: Verify container startup & health check
+        run: |
+          docker run -d --name promosys-ci-test -p 3000:3000 promosys:ci
+          
+          echo "Waiting for container to become healthy on port 3000..."
+          timeout=90
+          HTTP_CODE=""
+          while [ $timeout -gt 0 ]; do
+            HTTP_CODE=$(curl -fsS -o /dev/null -w "%{http_code}" http://localhost:3000/ 2>/dev/null || true)
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "✅ Container is healthy (HTTP 200)"
+              break
+            fi
+            sleep 2
+            timeout=$((timeout - 2))
+          done
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Container health check failed! Last HTTP status: $HTTP_CODE"
+            docker logs --tail=100 promosys-ci-test
+            docker rm -f promosys-ci-test
+            exit 1
+          fi
+          
+          docker rm -f promosys-ci-test
+
+  deploy:
+    name: Deploy to Production
+    needs: [quality, build]
+    runs-on: ubuntu-latest
+    environment: production
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add remote server to known hosts
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST || '54.38.156.226' }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Sync files to remote server via rsync
+        env:
+          SSH_USER: ${{ secrets.SSH_USER || 'ferdavs' }}
+          SSH_HOST: ${{ secrets.SSH_HOST || '54.38.156.226' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || '/home/ferdavs/procsys/promosys' }}
+        run: |
+          ssh "$SSH_USER@$SSH_HOST" "mkdir -p $DEPLOY_PATH"
+          rsync -avz --delete \
+            --exclude .git \
+            --exclude node_modules \
+            --exclude dist \
+            --exclude .next \
+            --exclude .wrangler \
+            --exclude .vinext \
+            --exclude .pnpm-store \
+            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+      - name: Execute Zero-Downtime Deployment
+        env:
+          SSH_USER: ${{ secrets.SSH_USER || 'ferdavs' }}
+          SSH_HOST: ${{ secrets.SSH_HOST || '54.38.156.226' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH || '/home/ferdavs/procsys/promosys' }}
+        run: |
+          ssh "$SSH_USER@$SSH_HOST" DEPLOY_PATH="$DEPLOY_PATH" "bash -s" << 'EOF'
+            set -euo pipefail
+            cd "$DEPLOY_PATH"
+            
+            echo "=== [1/4] Building new Docker image ==="
+            docker build -t promosys:next -f Dockerfile .
+            
+            echo "=== [2/4] Pre-warming standby container on free port ==="
+            STANDBY_NAME="promosys_standby_$(date +%s)"
+            STANDBY_PORT=3001
+            
+            while lsof -Pi :$STANDBY_PORT -sTCP:LISTEN -t >/dev/null 2>&1 || docker ps --format '{{.Ports}}' | grep -q ":$STANDBY_PORT->"; do
+              STANDBY_PORT=$((STANDBY_PORT + 1))
+            done
+            
+            docker run -d \
+              --name "$STANDBY_NAME" \
+              -p "127.0.0.1:$STANDBY_PORT:3000" \
+              --env NODE_ENV=production \
+              --env PORT=3000 \
+              --env HOST=0.0.0.0 \
+              promosys:next
+            
+            echo "=== [3/4] Health-check standby container on http://127.0.0.1:$STANDBY_PORT/ (up to 90s) ==="
+            MAX_ATTEMPTS=45
+            ATTEMPT=0
+            HEALTHY=false
+            HTTP_CODE=""
+            
+            while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+              HTTP_CODE=$(curl -fsS -o /dev/null -w '%{http_code}' "http://127.0.0.1:$STANDBY_PORT/" 2>/dev/null || true)
+              if [ "$HTTP_CODE" = "200" ]; then
+                echo "✅ Standby container is healthy (HTTP 200) on attempt $((ATTEMPT + 1))"
+                HEALTHY=true
+                break
+              fi
+              ATTEMPT=$((ATTEMPT + 1))
+              sleep 2
+            done
+            
+            if [ "$HEALTHY" != "true" ]; then
+              echo "❌ Standby health check failed! Last HTTP code: $HTTP_CODE"
+              echo "=== Standby container logs ==="
+              docker logs --tail=100 "$STANDBY_NAME" || true
+              docker rm -f "$STANDBY_NAME" || true
+              exit 1
+            fi
+            
+            echo "=== [4/4] Zero-downtime container switch ==="
+            docker tag promosys:next promosys:latest
+            
+            # Start/update the production container via docker compose
+            docker compose up -d --remove-orphans
+            
+            # Clean up the pre-warmed standby container
+            docker rm -f "$STANDBY_NAME" || true
+            
+            # Verify primary endpoint
+            echo "Verifying primary endpoint http://localhost:3000/..."
+            FINAL_CODE=$(curl -fsS -o /dev/null -w '%{http_code}' http://localhost:3000/ 2>/dev/null || true)
+            if [ "$FINAL_CODE" != "200" ]; then
+              echo "❌ Primary container health check failed with HTTP: $FINAL_CODE"
+              docker compose logs --tail=100 promosys
+              exit 1
+            fi
+            
+            echo "🎉 PROMSYS successfully deployed with 0 downtime!"
+          EOF

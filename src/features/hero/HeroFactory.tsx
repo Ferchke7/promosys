@@ -1,48 +1,47 @@
 "use client";
 
+import { useState } from "react";
 import { Factory, RadioTower } from "lucide-react";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
-import { FactoryDiorama } from "./FactoryDiorama";
+import { Factory3DCanvas } from "./Factory3DCanvas";
 import { FactoryImpact } from "./FactoryImpact";
 import { FactorySystems } from "./FactorySystems";
 import type { HeroFactoryContent } from "./content";
 import styles from "./HeroFactory.module.css";
 
 export function HeroFactory({ content }: { content: HeroFactoryContent }) {
-  const reducedMotion = useReducedMotion();
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 70, damping: 22 });
-  const springY = useSpring(pointerY, { stiffness: 70, damping: 22 });
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-3.2, 3.2]);
-  const rotateX = useTransform(springY, [-0.5, 0.5], [2.2, -2.2]);
+  const [activeModule, setActiveModule] = useState<"all" | "mes" | "wms" | "aps" | "qa">("all");
 
   return (
-    <div
-      className={styles.visual}
-      onPointerMove={(event) => {
-        if (reducedMotion) return;
-        const rect = event.currentTarget.getBoundingClientRect();
-        pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
-        pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
-      }}
-      onPointerLeave={() => {
-        pointerX.set(0);
-        pointerY.set(0);
-      }}
-      aria-label={content.ariaLabel}
-      role="img"
-    >
+    <div className={styles.visual} aria-label={content.ariaLabel} role="region">
       <div className={styles.ambientGlow} aria-hidden="true" />
-      <motion.div className={styles.board} style={reducedMotion ? undefined : { rotateX, rotateY }}>
+      <div className={styles.board}>
         <div className={styles.grid} aria-hidden="true" />
-        <div className={styles.topbar} aria-hidden="true">
-          <span><Factory />{content.boardLabel}</span>
-          <strong><i />{content.online}</strong>
+
+        {/* Top Digital Twin Bar */}
+        <div className={styles.topbar}>
+          <span>
+            <Factory />
+            {content.boardLabel}
+          </span>
+          <strong>
+            <i />
+            {content.online}
+          </strong>
         </div>
 
+        {/* 1. Connected Core Systems (MES, WMS, APS) */}
         <FactorySystems label={content.systemsLabel} roles={content.systemRoles} />
-        <FactoryDiorama label={content.processLabel} stages={content.processStages} />
+
+        {/* 2. Interactive Real-Time 3D WebGL Factory Model */}
+        <div className={styles.diorama3DContainer}>
+          <Factory3DCanvas
+            content={content}
+            activeModule={activeModule}
+            onSelectModule={setActiveModule}
+          />
+        </div>
+
+        {/* 3. Real Measurable Impact Metrics */}
         <FactoryImpact
           label={content.impactLabel}
           caption={content.impactCaption}
@@ -51,11 +50,12 @@ export function HeroFactory({ content }: { content: HeroFactoryContent }) {
           metrics={content.metrics}
         />
 
+        {/* Bottom Synced Signal Indicator */}
         <div className={styles.signal} aria-hidden="true">
           <RadioTower />
           <span>{content.connected}</span>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

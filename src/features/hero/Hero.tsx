@@ -35,7 +35,7 @@ export function Hero() {
             <p className="mt-8 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">{content.description}</p>
           </Reveal>
           <Reveal delay={0.18} className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="#contacts">{content.primaryCta}</ButtonLink>
+            <ButtonLink href={locale === "ru" ? "/studio" : "#contacts"}>{content.primaryCta}</ButtonLink>
             <ButtonLink href="#features" variant="secondary">{content.secondaryCta}</ButtonLink>
           </Reveal>
           <Reveal delay={0.24} className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/55">

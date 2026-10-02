@@ -23,7 +23,7 @@ test("server-renders the complete PROMSYS landing page", async () => {
   assert.match(html, /Производство/);
   assert.match(html, /Что мешает производству расти/);
   assert.match(html, /Весь завод/);
-  assert.match(html, /Заказать демо/);
+  assert.match(html, /Заказать демо|Открыть Production Studio/);
   assert.match(html, /https:\/\/promosys\.duda\.uz\//);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /hreflang="uz"/i);

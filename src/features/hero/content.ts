@@ -42,7 +42,7 @@ export const heroContent: LocalizedContent<HeroContent> = {
     title: "Производство",
     titleAccent: "без брака и простоев.",
     description: "PROMSYS объединяет план, цех, качество и склад — чтобы средние и крупные предприятия выпускали больше продукции с меньшими потерями.",
-    primaryCta: "Заказать демо",
+    primaryCta: "Открыть Production Studio",
     secondaryCta: "Посмотреть возможности",
     benefits: ["Для средних и крупных предприятий", "От пилота до всего завода"],
     platformLabel: "Единая платформа",
