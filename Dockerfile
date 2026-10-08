@@ -7,8 +7,8 @@ RUN corepack enable && corepack prepare pnpm@11.19.0 --activate
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* .npmrc* ./
-RUN pnpm approve-builds --all || true
-RUN pnpm install --frozen-lockfile
+RUN pnpm config set ignore-scripts false
+RUN pnpm install --no-frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app
@@ -24,8 +24,6 @@ ENV HOST=0.0.0.0
 
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/pnpm-workspace.yaml* ./
-COPY --from=builder /app/.npmrc* ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
