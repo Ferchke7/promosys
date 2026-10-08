@@ -7,11 +7,14 @@ services:
     container_name: promosys
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
       - HOST=0.0.0.0
+    networks:
+      - duda-shared
+      - default
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ || curl -fsS http://127.0.0.1:3000/ || exit 1"]
       interval: 10s
@@ -19,36 +22,6 @@ services:
       retries: 3
       start_period: 15s
 
-  # Blue slot for zero-downtime blue-green deployment
-  promosys-blue:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: promosys:blue
-    container_name: promosys-blue
-    restart: unless-stopped
-    ports:
-      - "3001:3000"
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - HOST=0.0.0.0
-    profiles:
-      - bluegreen
-
-  # Green slot for zero-downtime blue-green deployment
-  promosys-green:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: promosys:green
-    container_name: promosys-green
-    restart: unless-stopped
-    ports:
-      - "3002:3000"
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - HOST=0.0.0.0
-    profiles:
-      - bluegreen
+networks:
+  duda-shared:
+    external: true
