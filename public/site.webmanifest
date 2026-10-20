@@ -1,0 +1,16 @@
+{
+  "name": "PROMSYS Manufacturing Intelligence",
+  "short_name": "PROMSYS",
+  "description": "MES, WMS и APS для умного производства",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
