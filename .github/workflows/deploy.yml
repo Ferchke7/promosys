@@ -197,10 +197,24 @@ jobs:
             # Clean up the pre-warmed standby container
             docker rm -f "$STANDBY_NAME" || true
             
-            # Verify primary endpoint
-            echo "Verifying primary endpoint http://localhost:3000/..."
-            FINAL_CODE=$(curl -fsS -o /dev/null -w '%{http_code}' http://localhost:3000/ 2>/dev/null || true)
-            if [ "$FINAL_CODE" != "200" ]; then
+            # Verify primary endpoint with retry loop
+            echo "Verifying primary endpoint http://localhost:3000/ (up to 50s)..."
+            FINAL_ATTEMPTS=25
+            FINAL_ATTEMPT=0
+            PRIMARY_HEALTHY=false
+            FINAL_CODE=""
+            while [ $FINAL_ATTEMPT -lt $FINAL_ATTEMPTS ]; do
+              FINAL_CODE=$(curl -fsS -o /dev/null -w '%{http_code}' http://localhost:3000/ 2>/dev/null || true)
+              if [ "$FINAL_CODE" = "200" ]; then
+                echo "✅ Primary container is healthy (HTTP 200) on attempt $((FINAL_ATTEMPT + 1))"
+                PRIMARY_HEALTHY=true
+                break
+              fi
+              FINAL_ATTEMPT=$((FINAL_ATTEMPT + 1))
+              sleep 2
+            done
+
+            if [ "$PRIMARY_HEALTHY" != "true" ]; then
               echo "❌ Primary container health check failed with HTTP: $FINAL_CODE"
               docker compose logs --tail=100 promosys
               exit 1
