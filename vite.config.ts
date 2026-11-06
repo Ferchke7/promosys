@@ -1,8 +1,75 @@
 import vinext from "vinext";
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import { fileURLToPath } from "node:url";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
+
+const ROUTE_OWNED_CLIENT_SHIMS = new Set([
+  "compat-router",
+  "dynamic",
+  "dynamic-preload-chunks",
+  "form",
+  "image",
+  "internal/hybrid-client-route-owner",
+  "layout-segment-context",
+  "legacy-image",
+  "link",
+  "offline",
+  "router",
+  "script",
+  "web-vitals",
+]);
+
+interface CodeSplittingGroup {
+  name?: ((moduleId: string) => string | null | undefined) | string;
+}
+
+interface EnvironmentClientBuild {
+  rolldownOptions?: {
+    output?: {
+      codeSplitting?: {
+        groups?: CodeSplittingGroup[];
+      };
+    };
+  };
+}
+
+function vinextManualChunksFixPlugin(): Plugin {
+  return {
+    name: "vinext-manual-chunks-fix",
+    configResolved(config) {
+      const environments = config.environments as
+        | Record<string, { build?: EnvironmentClientBuild }>
+        | undefined;
+      const clientOutput =
+        environments?.client?.build?.rolldownOptions?.output;
+      if (clientOutput?.codeSplitting?.groups) {
+        for (const group of clientOutput.codeSplitting.groups) {
+          if (typeof group.name === "function") {
+            const originalName = group.name;
+            group.name = function (moduleId: string) {
+              const slashedId = moduleId.replace(/\\/g, "/");
+              const shimsMarker = "node_modules/vinext/dist/shims/";
+              const idx = slashedId.indexOf(shimsMarker);
+              if (idx !== -1) {
+                const relativeId =
+                  slashedId.slice(idx + shimsMarker.length).split("?")[0] || "";
+                const extIdx = relativeId.lastIndexOf(".");
+                const shimName =
+                  extIdx === -1 ? relativeId : relativeId.slice(0, extIdx);
+                if (ROUTE_OWNED_CLIENT_SHIMS.has(shimName)) {
+                  return null;
+                }
+                return "vinext";
+              }
+              return originalName(moduleId);
+            };
+          }
+        }
+      }
+    },
+  };
+}
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
@@ -54,6 +121,7 @@ export default defineConfig(async () => {
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
     plugins: [
+      vinextManualChunksFixPlugin(),
       vinext(),
       sites(),
       cloudflare({
