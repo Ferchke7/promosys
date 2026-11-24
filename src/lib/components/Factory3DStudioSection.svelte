@@ -8,6 +8,10 @@
 	let startY = 0;
 
 	function onPointerDown(e: PointerEvent) {
+		// Do not initiate drag or capture pointer when clicking buttons or interactive overlays
+		if ((e.target as HTMLElement).closest('button, a, input, select, textarea, [data-interactive]')) {
+			return;
+		}
 		isDragging = true;
 		startX = e.clientX;
 		startY = e.clientY;
@@ -27,6 +31,7 @@
 	}
 
 	function onPointerUp(e: PointerEvent) {
+		if (!isDragging) return;
 		isDragging = false;
 		try {
 			(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
@@ -34,6 +39,7 @@
 	}
 
 	function onWheel(e: WheelEvent) {
+		if ((e.target as HTMLElement).closest('.overflow-y-auto, textarea, input')) return;
 		e.preventDefault();
 		factory3d.zoom(e.deltaY * 0.004);
 	}
@@ -134,7 +140,7 @@
 			{#if factory3d.selectedHotspot}
 				{@const spot = factory3d.selectedHotspot}
 				<div
-					class="absolute top-16 right-4 z-30 w-[92%] max-w-sm border border-[rgba(244,242,236,0.18)] bg-[#070709]/95 p-6 shadow-2xl backdrop-blur-xl sm:top-16 sm:right-6 animate-in fade-in slide-in-from-right-4 duration-300"
+					class="pointer-events-auto absolute top-16 right-4 z-30 w-[92%] max-w-sm border border-[rgba(244,242,236,0.18)] bg-[#070709]/95 p-6 shadow-2xl backdrop-blur-xl sm:top-16 sm:right-6 animate-in fade-in slide-in-from-right-4 duration-300"
 				>
 					<div class="flex items-start justify-between gap-4 border-b border-[rgba(244,242,236,0.1)] pb-4">
 						<div>
@@ -194,10 +200,10 @@
 
 			<!-- Bottom Dock: Control Mode Buttons -->
 			<div
-				class="absolute bottom-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 font-mono text-xs"
+				class="pointer-events-none absolute bottom-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 font-mono text-xs"
 			>
 				<!-- Mode Toggles -->
-				<div class="flex flex-wrap items-center gap-2">
+				<div class="pointer-events-auto flex flex-wrap items-center gap-2">
 					<button
 						type="button"
 						onclick={() => factory3d.toggleKinematics()}
@@ -236,7 +242,7 @@
 				</div>
 
 				<!-- Zoom and Reset Buttons -->
-				<div class="flex items-center gap-2">
+				<div class="pointer-events-auto flex items-center gap-2">
 					<button
 						type="button"
 						onclick={() => factory3d.zoom(-1.2)}
