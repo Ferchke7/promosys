@@ -40,14 +40,14 @@
 <!-- Fixed Background 3D WebGL Canvas -->
 <div
 	bind:this={containerEl}
-	class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#2f5249]"
+	class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#dce7eb]"
 	aria-hidden="true"
 >
 	<canvas bind:this={canvasEl} class="block h-full w-full"></canvas>
 
 	<!-- Subtle industrial vignette & CRT scanline layer -->
 	<div
-		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_65%,rgba(15,30,26,0.5)_100%)] opacity-30"
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_65%,rgba(160,185,195,0.4)_100%)] opacity-30"
 	></div>
 
 	<!-- Technical HUD Overlay (Bottom-left & right rails) -->
@@ -81,10 +81,10 @@
 	</aside>
 
 	<!-- Corner ticks for high-tech aesthetic -->
-	<div class="pointer-events-none absolute top-20 left-4 text-[9px] font-mono text-[rgba(244,242,236,0.3)] uppercase tracking-[0.2em]">
-		+ [PROMSYS_BATTERY_GIGA_01] // TASHKENT_PLANT
+	<div class="pointer-events-none absolute top-20 left-4 text-[9px] font-mono text-[rgba(244,242,236,0.5)] uppercase tracking-[0.2em]">
+		+ [PROMSYS_PLANT_COMPLEX] // TASHKENT_FACILITY
 	</div>
-	<div class="pointer-events-none absolute top-20 right-4 text-[9px] font-mono text-[rgba(244,242,236,0.3)] uppercase tracking-[0.2em]">
-		ETHERCAT_1MS · 6-AXIS · PBR
+	<div class="pointer-events-none absolute top-20 right-4 text-[9px] font-mono text-[rgba(244,242,236,0.5)] uppercase tracking-[0.2em]">
+		142_MACHINES · OPC-UA · MES_CORE
 	</div>
 </div>

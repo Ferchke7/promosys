@@ -55,16 +55,16 @@
 			<div>
 				<div class="font-mono-tech flex items-center gap-3 text-xs tracking-[0.16em] text-[var(--accent)] uppercase">
 					<span class="signal-pulse inline-block h-2 w-2 rounded-full bg-[var(--accent)]"></span>
-					<span>05 // ИЗОМЕТРИЧЕСКАЯ 3D-ДИОРАМА · GIGAFACTORY MINI</span>
+					<span>05 // ЦИФРОВОЙ ДВОЙНИК · ИНДУСТРИАЛЬНЫЙ КОМПЛЕКС</span>
 				</div>
 				<h2
 					class="font-industrial mt-3 text-3xl font-extrabold uppercase tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl"
 				>
-					ИЗОМЕТРИЧЕСКАЯ 3D-ЛИНИЯ ПРОИЗВОДСТВА
+					ИНТЕРАКТИВНЫЙ 3D-ЗАВОД PROMSYS
 				</h2>
 			</div>
 			<div class="font-mono-tech max-w-md text-xs leading-relaxed text-[var(--text-secondary)]">
-				Интерактивная 3D-диорама автоматизированной фабрики: зажимайте <span class="text-[var(--text-primary)] font-semibold">ЛКМ для вращения 360°</span>, <span class="text-[var(--text-primary)] font-semibold">колесо мыши для зума</span>. Включайте <span class="text-[var(--text-primary)] font-semibold">Взрыв-схему</span> или кликайте по узлам линии.
+				Цифровой двойник промышленного комплекса: зажимайте <span class="text-[var(--text-primary)] font-semibold">ЛКМ для 3D-вращения 360°</span>, <span class="text-[var(--text-primary)] font-semibold">колесо мыши для зума</span>. Включайте <span class="text-[var(--text-primary)] font-semibold">Взрыв-схему</span> для осмотра цехов или кликайте на объекты.
 			</div>
 		</div>
 
@@ -72,7 +72,7 @@
 		<div
 			class="relative mt-8 min-h-[580px] sm:min-h-[720px] w-full overflow-hidden border border-[rgba(244,242,236,0.22)] bg-transparent shadow-2xl cursor-grab active:cursor-grabbing select-none"
 			role="region"
-			aria-label="Интерактивная 3D диорама фабрики производства батарей"
+			aria-label="Интерактивная 3D модель промышленного завода PROMSYS"
 			onpointerdown={onPointerDown}
 			onpointermove={onPointerMove}
 			onpointerup={onPointerUp}
@@ -97,12 +97,12 @@
 			>
 				<div class="flex items-center gap-3 bg-[#070709]/80 px-3 py-1.5 border border-[rgba(244,242,236,0.1)]">
 					<span class="inline-block h-2 w-2 rounded-full bg-[#00e5ff] animate-ping"></span>
-					<span class="text-[#F4F2EC] font-bold">PROMSYS DIORAMA // НЕПРЕРЫВНЫЙ ЦИКЛ СИНТЕЗА И СБОРКИ</span>
+					<span class="text-[#F4F2EC] font-bold">PROMSYS PLANT // 142 СТАНКА В ЕДИНОЙ ШИНЕ ДАННЫХ</span>
 				</div>
 				<div class="hidden sm:flex items-center gap-4 bg-[#070709]/80 px-3 py-1.5 border border-[rgba(244,242,236,0.1)]">
-					<span>ТАКТ: <b class="text-[#FF3B00]">0.65s</b></span>
+					<span>ТАКТ: <b class="text-[#FF3B00]">1.42s</b></span>
 					<span>ВЫХОД ГОДНЫХ: <b class="text-[#F4F2EC]">99.8%</b></span>
-					<span>OEE: <b class="text-[#00e5ff]">98.4%</b></span>
+					<span>OEE: <b class="text-[#00e5ff]">96.8%</b></span>
 				</div>
 			</div>
 
@@ -272,7 +272,7 @@
 
 		<!-- Hotspot Quick Selector Pills -->
 		<div class="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs">
-			<span class="text-[var(--text-muted)] text-[10px] tracking-[0.12em] uppercase mr-2">Узлы 3D-диорамы:</span>
+			<span class="text-[var(--text-muted)] text-[10px] tracking-[0.12em] uppercase mr-2">Объекты завода:</span>
 			{#each FACTORY_HOTSPOTS as spot}
 				<button
 					type="button"
