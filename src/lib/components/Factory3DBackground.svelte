@@ -40,14 +40,14 @@
 <!-- Fixed Background 3D WebGL Canvas -->
 <div
 	bind:this={containerEl}
-	class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#070709]"
+	class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#2f5249]"
 	aria-hidden="true"
 >
 	<canvas bind:this={canvasEl} class="block h-full w-full"></canvas>
 
 	<!-- Subtle industrial vignette & CRT scanline layer -->
 	<div
-		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_60%,rgba(7,7,9,0.45)_100%)] opacity-30"
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_65%,rgba(15,30,26,0.5)_100%)] opacity-30"
 	></div>
 
 	<!-- Technical HUD Overlay (Bottom-left & right rails) -->

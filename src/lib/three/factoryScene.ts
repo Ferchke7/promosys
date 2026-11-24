@@ -14,100 +14,101 @@ export interface HotspotDef {
 	description: string;
 }
 
-export const BATTERY_HOTSPOTS: HotspotDef[] = [
+export const FACTORY_HOTSPOTS: HotspotDef[] = [
 	{
-		id: 'laser-busbar-welding',
+		id: 'synthesis-reactor',
 		num: '01',
-		title: 'Лазерная Сварка Шин (Busbars)',
-		category: 'ПРЕЦИЗИОННАЯ СВАРКА КЛЕММ',
-		subtitle: 'Высокоскоростное волоконное соединение медных шин с ячейками 21700',
-		position: [0.0, 1.45, 0.0],
-		cameraTarget: [0.0, 0.9, 0.0],
-		cameraPos: [1.8, 2.2, 2.8],
+		title: 'Первичный Реактор Синтеза & Катодная Башня',
+		category: 'СИНТЕЗ ПРЕКУРСОРОВ & ПОДГОТОВКА СЫРЬЯ',
+		subtitle: 'Автоматический термосинтез литиевых соединений с контролем давления и чистоты',
+		position: [-4.2, 2.2, 0.8],
+		cameraTarget: [-4.2, 1.2, 0.8],
+		cameraPos: [-1.8, 3.2, 3.8],
 		specs: [
-			{ label: 'Мощность лазера', value: '4.0 кВт IPG Fiber' },
-			{ label: 'Скорость импульса', value: '120 сварных точек/сек' },
-			{ label: 'Глубина провара', value: '0.45 ± 0.03 мм' },
-			{ label: 'Контроль пула расплава', value: 'PROMSYS Optical OCT (100%)' }
+			{ label: 'Чистота синтеза', value: '99.98% LiNiMnCoO2' },
+			{ label: 'Давление реактора', value: '4.2 бар N2' },
+			{ label: 'Контроль температуры', value: 'PID ± 0.5 °C' },
+			{ label: 'Интеграция MES', value: 'PROMSYS Batch Control' }
 		],
 		description:
-			'Бесконтактная лазерная микросварка соединяет медные токопроводящие шины с никелевыми выводами ячеек. Система PROMSYS контролирует температуру ванны расплава в реальном времени, исключая перегрев лития.'
+			'Главный реактор непрерывного синтеза катодных и анодных прекурсоров. Четыре вспомогательных буферных ресивера подают инертную среду и реактивы. Партии металлов формируются в калиброванные кубы и подаются на конвейер.'
 	},
 	{
-		id: 'robotic-cell-stacking',
+		id: 'transformation-tunnel',
 		num: '02',
-		title: 'Робот-Укладчик Ячеек в Матрицу',
-		category: 'КИНЕМАТИКА & СБОРКА МОДУЛЕЙ',
-		subtitle: 'Автоматизированная вакуумная посадка Li-ion элементов в сотовый холдер',
-		position: [-3.8, 1.7, 0.0],
-		cameraTarget: [-3.8, 1.1, 0.0],
-		cameraPos: [-2.2, 2.5, 3.2],
+		title: 'Туннель Лазерной Формовки & Каландрирования',
+		category: 'НЕПРЕРЫВНАЯ ОБРАБОТКА & ТРАНСФОРМАЦИЯ',
+		subtitle: 'Высокоскоростное спекание и лазерная прецизионная активация ячеек',
+		position: [-0.2, 1.4, 0.8],
+		cameraTarget: [-0.2, 0.7, 0.8],
+		cameraPos: [0.8, 2.2, 3.2],
 		specs: [
-			{ label: 'Тактовое время укладки', value: '0.24 сек / элемент' },
-			{ label: 'Степени свободы робота', value: '6-DOF Articulated Arm' },
-			{ label: 'Проверка полярности', value: 'Машинное зрение 2D Matrix' },
-			{ label: 'Точность позиционирования', value: '± 0.02 мм' }
+			{ label: 'Скорость прохода', value: '1.2 м/сек' },
+			{ label: 'Тип обработки', value: 'Лазерно-термический отжиг' },
+			{ label: 'Статус инспекции', value: '100% Optical In-Line' },
+			{ label: 'OEE узла', value: '98.4%' }
 		],
 		description:
-			'Многопозиционный вакуумный захват берет партию протестированных элементов питания и укладывает их в огнестойкий композитный холдер с автоматической перепроверкой ориентации полюсов +/-.'
+			'Центральная проточная камера. Сырьевые металлические блоки на входе проходят через оптический барьер и высокоэнергетический лазерный контур, трансформируясь в активированные кристаллы/ячейки с заданными электрохимическими свойствами.'
 	},
 	{
-		id: 'inline-eol-testing',
+		id: 'assembly-vessel',
 		num: '03',
-		title: '100% Inline-Тестирование OCV & Импеданса',
-		category: 'ВЫХОДНОЙ КОНТРОЛЬ КАЧЕСТВА (EOL)',
-		subtitle: 'Автоматический замер напряжения разомкнутой цепи и внутреннего сопротивления',
-		position: [3.8, 1.35, 0.0],
-		cameraTarget: [3.8, 0.85, 0.0],
-		cameraPos: [2.5, 2.1, 2.9],
+		title: 'Активационный Реактор & Сборка Модулей',
+		category: 'ФИНАЛЬНАЯ СБОРКА & ЭНЕРГЕТИЧЕСКИЙ КЕРН',
+		subtitle: 'Высоковольтная интеграция ячеек с левитирующим силовым ядром',
+		position: [4.6, 2.8, -1.6],
+		cameraTarget: [4.6, 1.6, -1.6],
+		cameraPos: [2.6, 3.6, 1.4],
 		specs: [
-			{ label: 'Схема измерений', value: '4-проводная Кельвина (mΩ)' },
-			{ label: 'Погрешность OCV', value: '± 0.1 мВ' },
-			{ label: 'Дельта баланса ячеек', value: 'ΔV < 1.5 мВ допуск' },
-			{ label: 'Прослеживаемость MES', value: 'Цифровой паспорт каждого модуля' }
+			{ label: 'Энергоемкость ядра', value: '84.6 кВт·ч / пак' },
+			{ label: 'Напряжение шины', value: '800 В архитектура' },
+			{ label: 'Баланс потенциалов', value: 'ΔV < 1.0 мВ' },
+			{ label: 'Контроллер BMS', value: 'PROMSYS Edge Dual-Core' }
 		],
 		description:
-			'Многоконтактный диагностический гребешок опускается на шины собранного модуля, измеряя импеданс каждого последовательного сегмента. Модули с отклонением выше 0.5% мгновенно отбраковываются на рецикл.'
+			'Финальный сборочный реактор с ребристым цилиндрическим корпусом. На верхней площадке в электромагнитном поле удерживается кристаллический энергомодуль, проходящий цикл калибровки и зарядного тестирования перед упаковкой.'
 	},
 	{
-		id: 'bms-integration-station',
+		id: 'pallet-depot',
 		num: '04',
-		title: 'Монтаж Платы Управления BMS',
-		category: 'ЭЛЕКТРОНИКА И БЕЗОПАСНОСТЬ',
-		subtitle: 'Установка контроллера балансировки, термодатчиков NTC и силовой коммутации',
-		position: [0.0, 1.6, -1.8],
-		cameraTarget: [0.0, 1.0, -1.8],
-		cameraPos: [-1.8, 2.6, 0.8],
+		title: 'WMS-Буфер Паллет & Склад Сырья',
+		category: 'АВТОМАТИЗИРОВАННЫЙ СКЛАД & ЛОГИСТИКА',
+		subtitle: 'Динамический накопитель калиброванных сырьевых блоков и паллет',
+		position: [-1.5, 1.2, -3.0],
+		cameraTarget: [-1.5, 0.6, -3.0],
+		cameraPos: [0.5, 2.5, -1.0],
 		specs: [
-			{ label: 'Архитектура BMS', value: 'Active Balancing 16S / 800V' },
-			{ label: 'Точки термомониторинга', value: '16 датчиков на модуль' },
-			{ label: 'Протокол обмена', value: 'CANopen / Industrial Ethernet' },
-			{ label: 'Защита от терморазгона', value: 'Алгоритм PROMSYS SafeBattery' }
+			{ label: 'Вместимость буфера', value: '250 ед. / ярус' },
+			{ label: 'Точность учета WMS', value: '100% RFID / QR' },
+			{ label: 'Время подачи на линию', value: '8.4 сек' },
+			{ label: 'Автономность AGV', value: 'Беспилотная доставка' }
 		],
 		description:
-			'Интеграция интеллектуальной платы управления батареей (Battery Management System). Платформа PROMSYS калибрует датчики тока и прошивает индивидуальный профиль деградации ячеек.'
+			'Обособленная паллетная платформа с пирамидальным штабелем металлических сырьевых блоков. Модуль WMS PROMSYS отслеживает партии в реальном времени, автоматически вызывая роботизированные тележки для пополнения конвейера.'
 	},
 	{
-		id: 'gigafactory-conveyor-wms',
+		id: 'control-console',
 		num: '05',
-		title: 'Конвейерная Линия Gigafactory & WMS',
-		category: 'ЛОГИСТИКА И ПРОСЛЕЖИВАЕМОСТЬ',
-		subtitle: 'Прецизионная подача паллет с RFID-трекингом и синхронизацией такта',
-		position: [-0.2, 0.65, 0.0],
-		cameraTarget: [-0.2, 0.45, 0.0],
-		cameraPos: [0.0, 3.4, 4.6],
+		title: 'Автономный Контроллер Ячейки & SCADA',
+		category: 'УПРАВЛЕНИЕ ЛИНИЕЙ & ТЕЛЕМЕТРИЯ',
+		subtitle: 'Периферийный промышленный терминал управления тактом и приводами',
+		position: [0.8, 1.0, 2.2],
+		cameraTarget: [0.8, 0.4, 2.2],
+		cameraPos: [-0.6, 1.8, 4.0],
 		specs: [
-			{ label: 'Скорость перемещения', value: '0.6 - 1.2 м/с регулируемая' },
-			{ label: 'Идентификация паллет', value: 'UHF RFID + лазерный дальномер' },
-			{ label: 'Синхронизация такта', value: 'APS динамический балансир' },
-			{ label: 'Стандарт безопасности', value: 'ISO 26262 ASIL-D' }
+			{ label: 'Шина передачи данных', value: 'EtherCAT 1 мс' },
+			{ label: 'Частота опроса датчиков', value: '1000 Гц' },
+			{ label: 'ПЛК', value: 'PROMSYS Industrial RTOS' },
+			{ label: 'Безопасность SIL', value: 'SIL-3 / Ple Certified' }
 		],
 		description:
-			'Двухниточный автоматизированный транспортер с антистатическим покрытием (ESD-safe). Подает тяжелые аккумуляторные блоки между роботизированными станциями без рывков и вибраций.'
+			'Локальный пульт оператора с физическими тумблерами и датчиками. Обеспечивает аварийный останов, синхронизацию скорости конвейерной петли и прямую передачу телеметрии в облачный дашборд PROMSYS MES.'
 	}
 ];
 
-export const FACTORY_HOTSPOTS = BATTERY_HOTSPOTS;
+// Backwards compatibility alias
+export const BATTERY_HOTSPOTS = FACTORY_HOTSPOTS;
 
 export interface SceneTelemetry {
 	camAzimuth: number;
@@ -122,40 +123,48 @@ export interface SceneTelemetry {
 export class FactorySceneManager {
 	private container: HTMLElement;
 	private canvas: HTMLCanvasElement;
-	private renderer!: THREE.WebGLRenderer;
 	private scene!: THREE.Scene;
 	private camera!: THREE.PerspectiveCamera;
+	private renderer!: THREE.WebGLRenderer;
 	private controls!: OrbitControls;
-	private clock: THREE.Clock = new THREE.Clock();
 
-	// Groups
-	private lineRoot: THREE.Group = new THREE.Group();
-	private conveyorGroup: THREE.Group = new THREE.Group();
-	private workstationsGroup: THREE.Group = new THREE.Group();
-	private movingPacksGroup: THREE.Group = new THREE.Group();
-	private featuredBatteryPack: THREE.Group = new THREE.Group();
-	private laserBeamMesh!: THREE.Mesh;
-	private laserLight!: THREE.PointLight;
-	private weldingSparks!: THREE.Points;
-	private sparkPositions!: Float32Array;
-	private sparkVelocities!: Float32Array;
+	// Diorama Root Groups
+	private rootGroup!: THREE.Group;
+	private reactorA!: THREE.Group;
+	private reactorB!: THREE.Group;
+	private tunnelGroup!: THREE.Group;
+	private palletGroup!: THREE.Group;
+	private consoleGroup!: THREE.Group;
+	private conveyorGroup!: THREE.Group;
+	private itemsGroup!: THREE.Group;
 
-	// Exploded layers of the featured battery pack
-	private explodeLayers: {
-		topCover: THREE.Mesh;
-		bmsBoard: THREE.Group;
-		busbars: THREE.Group;
-		holderUpper: THREE.Mesh;
-		cellsMatrix: THREE.Group;
-		coolingPlate: THREE.Mesh;
-		bottomTray: THREE.Mesh;
-	} = {} as any;
+	// Animated Elements
+	private levitatingCrystal!: THREE.Mesh;
+	private tunnelLed!: THREE.Mesh;
+	private tunnelPointLight!: THREE.PointLight;
+	private crystalPointLight!: THREE.PointLight;
+
+	// Conveyor curve & moving items
+	private conveyorCurve!: THREE.CatmullRomCurve3;
+	private carrierItems: {
+		meshCube: THREE.Mesh;
+		meshGem: THREE.Mesh;
+		group: THREE.Group;
+		offset: number;
+	}[] = [];
+
+	// Exploded View Elements
+	private explodeElements: {
+		object: THREE.Object3D;
+		basePos: THREE.Vector3;
+		targetOffset: THREE.Vector3;
+	}[] = [];
 
 	// Materials for X-Ray toggle
 	private defaultMaterials: Map<THREE.Mesh, THREE.Material | THREE.Material[]> = new Map();
 	private wireframeMaterials: Map<THREE.Mesh, THREE.MeshBasicMaterial> = new Map();
 
-	// States & Modes
+	// Modes & State
 	public isInteractiveMode: boolean = false;
 	public isKinematicsActive: boolean = true;
 	public isExploded: boolean = false;
@@ -164,16 +173,18 @@ export class FactorySceneManager {
 
 	private explodeProgress: number = 0;
 	private targetExplode: number = 0;
-	private conveyorSpeed: number = 0.85;
+	private conveyorSpeed: number = 0.055;
 
-	// Camera Lerp
-	private currentCamPos = new THREE.Vector3(0, 3.8, 7.8);
-	private targetCamPos = new THREE.Vector3(0, 3.8, 7.8);
-	private currentLookAt = new THREE.Vector3(0, 1.0, 0);
-	private targetLookAt = new THREE.Vector3(0, 1.0, 0);
-	private targetFov = 38;
+	// Isometric Camera Setup
+	private defaultCamPos = new THREE.Vector3(18.5, 14.5, 18.5);
+	private defaultLookAt = new THREE.Vector3(0, 0.8, 0);
+	private currentCamPos = new THREE.Vector3(18.5, 14.5, 18.5);
+	private targetCamPos = new THREE.Vector3(18.5, 14.5, 18.5);
+	private currentLookAt = new THREE.Vector3(0, 0.8, 0);
+	private targetLookAt = new THREE.Vector3(0, 0.8, 0);
+	private targetFov = 28;
 
-	// Telemetry metrics
+	// Telemetry
 	private frameCount = 0;
 	private lastFpsUpdate = 0;
 	private currentFps = 60;
@@ -186,6 +197,7 @@ export class FactorySceneManager {
 
 	private isDisposed = false;
 	private reqId: number | null = null;
+	private clock = new THREE.Clock();
 
 	constructor(container: HTMLElement, canvas: HTMLCanvasElement) {
 		this.container = container;
@@ -197,17 +209,18 @@ export class FactorySceneManager {
 		const width = this.container.clientWidth || window.innerWidth;
 		const height = this.container.clientHeight || window.innerHeight;
 
-		// 1. Scene & Cleanroom Atmosphere
+		// 1. Scene & Studio Clay Color Palette
 		this.scene = new THREE.Scene();
-		this.scene.background = new THREE.Color(0x08090d);
-		this.scene.fog = new THREE.FogExp2(0x08090d, 0.032);
+		// Studio sage green background matching reference Image 1
+		this.scene.background = new THREE.Color(0x2f5249);
+		this.scene.fog = new THREE.FogExp2(0x2f5249, 0.016);
 
-		// 2. Camera
-		this.camera = new THREE.PerspectiveCamera(this.targetFov, width / height, 0.1, 150);
+		// 2. Camera (Low FOV for Isometric / Axonometric Look)
+		this.camera = new THREE.PerspectiveCamera(this.targetFov, width / height, 0.1, 100);
 		this.camera.position.copy(this.currentCamPos);
 		this.camera.lookAt(this.currentLookAt);
 
-		// 3. Renderer
+		// 3. WebGL Renderer with Soft PCF Shadows & Studio Tone Mapping
 		this.renderer = new THREE.WebGLRenderer({
 			canvas: this.canvas,
 			antialias: true,
@@ -215,959 +228,1067 @@ export class FactorySceneManager {
 			alpha: false
 		});
 		this.renderer.setSize(width, height);
-		this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+		this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
 		this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		this.renderer.toneMappingExposure = 1.25;
+		this.renderer.toneMappingExposure = 1.15;
 		this.renderer.shadowMap.enabled = true;
 		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-		// 4. OrbitControls
+		// 4. OrbitControls for Free Pointer Dragging
 		this.controls = new OrbitControls(this.camera, this.canvas);
 		this.controls.enableDamping = true;
 		this.controls.dampingFactor = 0.06;
-		this.controls.minDistance = 2.0;
-		this.controls.maxDistance = 22.0;
-		this.controls.maxPolarAngle = Math.PI / 2 - 0.02;
+		this.controls.minDistance = 6.0;
+		this.controls.maxDistance = 35.0;
+		this.controls.maxPolarAngle = Math.PI / 2 - 0.05;
 		this.controls.target.copy(this.currentLookAt);
-		this.controls.enabled = false;
+		this.controls.enabled = false; // We drive camera manually via pointer events or OrbitControls on studio activate
 
-		// 5. High-Precision Lighting
+		// 5. Lighting Setup
 		this.setupLighting();
 
-		// 6. Cleanroom ESD Floor & Boundary Grid
-		this.setupCleanroomFloor();
+		// 6. Build Diorama Platform & Environment
+		this.rootGroup = new THREE.Group();
+		this.scene.add(this.rootGroup);
 
-		// 7. Build Full Battery Production Line
-		this.buildBatteryProductionLine();
+		this.setupDioramaPlinth();
 
-		// 8. Welding Sparks System
-		this.setupWeldingSparks();
+		// 7. Build Diorama Components (Matching Reference Image 1)
+		this.buildPrimarySynthesisReactor();
+		this.buildSecondaryAssemblyVessel();
+		this.buildTransformationTunnel();
+		this.buildConveyorLoop();
+		this.buildPalletWarehouseDepot();
+		this.buildAutonomousControlConsole();
+		this.buildAuxiliaryMiniatures();
 
-		// 9. Resize & Loop
+		// 8. Event Listeners & Loop
 		window.addEventListener('resize', this.onWindowResize);
 		this.animate();
 	}
 
 	private setupLighting() {
-		// Clean ambient light
-		const ambientLight = new THREE.AmbientLight(0x1e2430, 2.4);
-		this.scene.add(ambientLight);
+		// Soft ambient / hemisphere bounce (sky pastel + ground shadow)
+		const hemiLight = new THREE.HemisphereLight(0xdcf0e8, 0x1e362f, 1.4);
+		this.scene.add(hemiLight);
 
-		// Overhead high-bay industrial luminaires
-		const keySun = new THREE.DirectionalLight(0xf4f6fb, 4.2);
-		keySun.position.set(5, 14, 8);
-		keySun.castShadow = true;
-		keySun.shadow.mapSize.width = 2048;
-		keySun.shadow.mapSize.height = 2048;
-		keySun.shadow.bias = -0.0004;
-		this.scene.add(keySun);
+		// Key directional studio light creating soft crisp shadows
+		const dirLight = new THREE.DirectionalLight(0xfffef8, 2.2);
+		dirLight.position.set(16, 28, 18);
+		dirLight.castShadow = true;
+		dirLight.shadow.mapSize.width = 2048;
+		dirLight.shadow.mapSize.height = 2048;
+		dirLight.shadow.camera.near = 5;
+		dirLight.shadow.camera.far = 60;
+		dirLight.shadow.camera.left = -16;
+		dirLight.shadow.camera.right = 16;
+		dirLight.shadow.camera.top = 16;
+		dirLight.shadow.camera.bottom = -16;
+		dirLight.shadow.bias = -0.0004;
+		dirLight.shadow.radius = 3.5;
+		this.scene.add(dirLight);
 
-		// Front Key Spotlight directly illuminating the central welding workstation
-		const spotWelder = new THREE.SpotLight(0xffffff, 5.5, 30, Math.PI / 3.5, 0.4);
-		spotWelder.position.set(0, 8.5, 6);
-		spotWelder.target.position.set(0, 1.0, 0);
-		this.scene.add(spotWelder);
-		this.scene.add(spotWelder.target);
+		// Fill directional light from opposite side (mint sheen)
+		const fillLight = new THREE.DirectionalLight(0x9bd1c4, 0.85);
+		fillLight.position.set(-18, 16, -14);
+		this.scene.add(fillLight);
 
-		// PROMSYS Signature Orange Accent Light (Industrial safety indicator)
-		const orangeAccent = new THREE.PointLight(0xff3b00, 4.5, 20, 1.4);
-		orangeAccent.position.set(-6, 3.2, 2);
-		this.scene.add(orangeAccent);
-
-		// Cyan Gigafactory High-Tech Telemetry Light
-		const cyanAccent = new THREE.PointLight(0x00d4ff, 4.0, 20, 1.4);
-		cyanAccent.position.set(6, 3.2, 2);
-		this.scene.add(cyanAccent);
-
-		// Laser welding bright point light
-		this.laserLight = new THREE.PointLight(0x00f0ff, 4.0, 6, 1.2);
-		this.laserLight.position.set(0, 1.35, 0);
-		this.scene.add(this.laserLight);
+		// Rim backlight for silhouette separation
+		const rimLight = new THREE.DirectionalLight(0xe0f7f0, 0.6);
+		rimLight.position.set(0, 15, -20);
+		this.scene.add(rimLight);
 	}
 
-	private setupCleanroomFloor() {
-		// Reflective dark anti-static cleanroom epoxy floor
-		const floorGeo = new THREE.PlaneGeometry(60, 60);
-		const floorMat = new THREE.MeshStandardMaterial({
-			color: 0x090a0e,
-			roughness: 0.18,
+	private setupDioramaPlinth() {
+		// Sage green floor plane with soft shadow reception
+		const groundGeo = new THREE.PlaneGeometry(60, 60);
+		const groundMat = new THREE.MeshStandardMaterial({
+			color: 0x32564c,
+			roughness: 0.62,
+			metalness: 0.05
+		});
+		const ground = new THREE.Mesh(groundGeo, groundMat);
+		ground.rotation.x = -Math.PI / 2;
+		ground.position.y = 0;
+		ground.receiveShadow = true;
+		this.rootGroup.add(ground);
+		this.registerMaterial(ground, groundMat);
+
+		// Subtle bevel rim / shadow ring under the factory
+		const ringGeo = new THREE.RingGeometry(8, 12, 48);
+		const ringMat = new THREE.MeshBasicMaterial({
+			color: 0x243e37,
+			transparent: true,
+			opacity: 0.25,
+			side: THREE.DoubleSide
+		});
+		const ring = new THREE.Mesh(ringGeo, ringMat);
+		ring.rotation.x = -Math.PI / 2;
+		ring.position.y = 0.002;
+		this.rootGroup.add(ring);
+	}
+
+	// -------------------------------------------------------------
+	// 1. PRIMARY SYNTHESIS REACTOR (Station A - Left)
+	// -------------------------------------------------------------
+	private buildPrimarySynthesisReactor() {
+		this.reactorA = new THREE.Group();
+		this.reactorA.position.set(-4.2, 0, 0.8);
+
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+		const darkMat = new THREE.MeshStandardMaterial({
+			color: 0x2d443e,
+			roughness: 0.45,
+			metalness: 0.2
+		});
+		const chromeMat = new THREE.MeshStandardMaterial({
+			color: 0xdce2e4,
+			roughness: 0.22,
+			metalness: 0.88
+		});
+
+		// Base pedestal: Pill/capsule shaped rounded enclosure
+		const baseCylLeft = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 1.5, 32), mintMat);
+		baseCylLeft.position.set(-0.8, 0.75, 0);
+		baseCylLeft.castShadow = true;
+		baseCylLeft.receiveShadow = true;
+		this.reactorA.add(baseCylLeft);
+		this.registerMaterial(baseCylLeft, mintMat);
+
+		const baseCylRight = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 1.5, 32), mintMat);
+		baseCylRight.position.set(0.8, 0.75, 0);
+		baseCylRight.castShadow = true;
+		baseCylRight.receiveShadow = true;
+		this.reactorA.add(baseCylRight);
+		this.registerMaterial(baseCylRight, mintMat);
+
+		const baseMidBox = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.5, 2.0), mintMat);
+		baseMidBox.position.set(0, 0.75, 0);
+		baseMidBox.castShadow = true;
+		baseMidBox.receiveShadow = true;
+		this.reactorA.add(baseMidBox);
+		this.registerMaterial(baseMidBox, mintMat);
+
+		// White trim ring around the base bottom
+		const baseTrim = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.05, 0.1, 32), whiteMat);
+		baseTrim.position.set(-0.8, 0.05, 0);
+		this.reactorA.add(baseTrim);
+
+		// Stepped Tower & Dome on top of left cylinder
+		const towerTier1 = new THREE.Mesh(new THREE.CylinderGeometry(0.78, 0.88, 0.4, 32), mintMat);
+		towerTier1.position.set(-0.8, 1.7, 0);
+		towerTier1.castShadow = true;
+		this.reactorA.add(towerTier1);
+		this.registerMaterial(towerTier1, mintMat);
+
+		const towerCollar = new THREE.Mesh(new THREE.CylinderGeometry(0.82, 0.82, 0.12, 32), whiteMat);
+		towerCollar.position.set(-0.8, 1.95, 0);
+		this.reactorA.add(towerCollar);
+
+		// Rivet studs around collar
+		for (let i = 0; i < 12; i++) {
+			const angle = (i / 12) * Math.PI * 2;
+			const stud = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), whiteMat);
+			stud.position.set(-0.8 + Math.cos(angle) * 0.84, 1.95, Math.sin(angle) * 0.84);
+			this.reactorA.add(stud);
+		}
+
+		// Smooth White Dome on top (Exploded layer)
+		const domeGeo = new THREE.SphereGeometry(0.58, 32, 24, 0, Math.PI * 2, 0, Math.PI / 2);
+		const domeMesh = new THREE.Mesh(domeGeo, whiteMat);
+		domeMesh.position.set(-0.8, 2.0, 0);
+		domeMesh.castShadow = true;
+		this.reactorA.add(domeMesh);
+		this.registerMaterial(domeMesh, whiteMat);
+
+		this.explodeElements.push({
+			object: domeMesh,
+			basePos: domeMesh.position.clone(),
+			targetOffset: new THREE.Vector3(0, 1.6, 0)
+		});
+
+		// Dual Portholes on the front of the reactor
+		for (let i = 0; i < 2; i++) {
+			const xPos = -0.4 + i * 0.8;
+			const rim = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.04, 16, 32), whiteMat);
+			rim.position.set(xPos, 0.95, 1.02);
+			this.reactorA.add(rim);
+
+			const glass = new THREE.Mesh(new THREE.CircleGeometry(0.16, 32), darkMat);
+			glass.position.set(xPos, 0.95, 1.03);
+			this.reactorA.add(glass);
+		}
+
+		// 4 Side Vertical Pressure Canisters (Chemical tanks)
+		const tankGroup = new THREE.Group();
+		tankGroup.position.set(-0.8, 0.6, -1.25);
+
+		for (let i = 0; i < 4; i++) {
+			const tX = -0.75 + i * 0.5;
+			const tank = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.9, 16), mintMat);
+			tank.position.set(tX, 0, 0);
+			tank.castShadow = true;
+			tankGroup.add(tank);
+			this.registerMaterial(tank, mintMat);
+
+			// Top and bottom rounded caps
+			const capTop = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2), whiteMat);
+			capTop.position.set(tX, 0.45, 0);
+			tankGroup.add(capTop);
+
+			const capBtm = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 12, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), whiteMat);
+			capBtm.position.set(tX, -0.45, 0);
+			tankGroup.add(capBtm);
+
+			// Center white belt
+			const belt = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.14, 16), whiteMat);
+			belt.position.set(tX, 0, 0);
+			tankGroup.add(belt);
+		}
+		this.reactorA.add(tankGroup);
+
+		this.explodeElements.push({
+			object: tankGroup,
+			basePos: tankGroup.position.clone(),
+			targetOffset: new THREE.Vector3(0, 0, -0.8)
+		});
+
+		// Twin White L-Shaped Supply Pipes routing out of the top into the ground
+		for (let i = 0; i < 2; i++) {
+			const pZ = 0.3 + i * 0.35;
+			const pipeCurve = new THREE.CurvePath<THREE.Vector3>();
+			pipeCurve.add(new THREE.LineCurve3(new THREE.Vector3(0.5, 1.5, pZ), new THREE.Vector3(1.2, 1.5, pZ)));
+			pipeCurve.add(new THREE.LineCurve3(new THREE.Vector3(1.2, 1.5, pZ), new THREE.Vector3(1.2, 0.0, pZ)));
+
+			const pipeGeo = new THREE.TubeGeometry(pipeCurve, 20, 0.07, 12, false);
+			const pipeMesh = new THREE.Mesh(pipeGeo, whiteMat);
+			pipeMesh.castShadow = true;
+			this.reactorA.add(pipeMesh);
+			this.registerMaterial(pipeMesh, whiteMat);
+		}
+
+		this.rootGroup.add(this.reactorA);
+	}
+
+	// -------------------------------------------------------------
+	// 2. SECONDARY ASSEMBLY & ACTIVATION VESSEL (Station B - Right)
+	// -------------------------------------------------------------
+	private buildSecondaryAssemblyVessel() {
+		this.reactorB = new THREE.Group();
+		this.reactorB.position.set(4.6, 0, -1.6);
+
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+		const darkMat = new THREE.MeshStandardMaterial({
+			color: 0x2d443e,
+			roughness: 0.45,
+			metalness: 0.2
+		});
+
+		// Main Cylindrical Vessel
+		const vesselMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, 2.2, 36), mintMat);
+		vesselMesh.position.y = 1.1;
+		vesselMesh.castShadow = true;
+		vesselMesh.receiveShadow = true;
+		this.reactorB.add(vesselMesh);
+		this.registerMaterial(vesselMesh, mintMat);
+
+		// Vertical reinforcement ribs around the cylinder
+		for (let i = 0; i < 6; i++) {
+			const angle = (i / 6) * Math.PI * 2;
+			const rib = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.8, 0.14), whiteMat);
+			rib.position.set(Math.cos(angle) * 1.62, 1.1, Math.sin(angle) * 1.62);
+			rib.rotation.y = -angle;
+			this.reactorB.add(rib);
+		}
+
+		// Maintenance Door & Portholes on front
+		const door = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.95, 0.08), whiteMat);
+		door.position.set(0.6, 0.7, 1.58);
+		door.rotation.y = 0.35;
+		this.reactorB.add(door);
+
+		for (let i = 0; i < 2; i++) {
+			const yPos = 0.9 + i * 0.55;
+			const rim = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.04, 16, 32), whiteMat);
+			rim.position.set(-0.6, yPos, 1.56);
+			rim.rotation.y = -0.35;
+			this.reactorB.add(rim);
+
+			const glass = new THREE.Mesh(new THREE.CircleGeometry(0.16, 32), darkMat);
+			glass.position.set(-0.6, yPos, 1.57);
+			glass.rotation.y = -0.35;
+			this.reactorB.add(glass);
+		}
+
+		// Conical Top Collar with rivet studs
+		const collar = new THREE.Mesh(new THREE.CylinderGeometry(1.15, 1.65, 0.45, 36), mintMat);
+		collar.position.y = 2.42;
+		collar.castShadow = true;
+		this.reactorB.add(collar);
+		this.registerMaterial(collar, mintMat);
+
+		for (let i = 0; i < 14; i++) {
+			const angle = (i / 14) * Math.PI * 2;
+			const stud = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), whiteMat);
+			stud.position.set(Math.cos(angle) * 1.45, 2.3, Math.sin(angle) * 1.45);
+			this.reactorB.add(stud);
+		}
+
+		// Stepped Pedestal for the Energy Core
+		const ped1 = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.18, 32), whiteMat);
+		ped1.position.y = 2.72;
+		this.reactorB.add(ped1);
+
+		const ped2 = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.14, 32), whiteMat);
+		ped2.position.y = 2.86;
+		this.reactorB.add(ped2);
+
+		// LEVITATING MULTIFACETED ENERGY CRYSTAL (Signature Visual from Image 1)
+		const crystalGeo = new THREE.IcosahedronGeometry(0.55, 0);
+		const crystalMat = new THREE.MeshStandardMaterial({
+			color: 0xff4d6d,
+			roughness: 0.15,
+			metalness: 0.1,
+			emissive: 0xff2550,
+			emissiveIntensity: 0.65
+		});
+		this.levitatingCrystal = new THREE.Mesh(crystalGeo, crystalMat);
+		this.levitatingCrystal.position.set(0, 3.65, 0);
+		this.levitatingCrystal.castShadow = true;
+		this.reactorB.add(this.levitatingCrystal);
+		this.registerMaterial(this.levitatingCrystal, crystalMat);
+
+		// Point light inside crystal giving that soft coral radiance
+		this.crystalPointLight = new THREE.PointLight(0xff4d6d, 2.5, 6);
+		this.crystalPointLight.position.set(0, 3.65, 0);
+		this.reactorB.add(this.crystalPointLight);
+
+		this.explodeElements.push({
+			object: this.levitatingCrystal,
+			basePos: this.levitatingCrystal.position.clone(),
+			targetOffset: new THREE.Vector3(0, 2.2, 0)
+		});
+
+		// Curved Rear Exhaust Pipe
+		const exhCurve = new THREE.CurvePath<THREE.Vector3>();
+		exhCurve.add(new THREE.LineCurve3(new THREE.Vector3(1.6, 1.4, -0.6), new THREE.Vector3(2.5, 1.4, -0.6)));
+		exhCurve.add(new THREE.LineCurve3(new THREE.Vector3(2.5, 1.4, -0.6), new THREE.Vector3(2.5, 0.0, -0.6)));
+
+		const exhGeo = new THREE.TubeGeometry(exhCurve, 20, 0.16, 16, false);
+		const exhMesh = new THREE.Mesh(exhGeo, whiteMat);
+		exhMesh.castShadow = true;
+		this.reactorB.add(exhMesh);
+		this.registerMaterial(exhMesh, whiteMat);
+
+		this.rootGroup.add(this.reactorB);
+	}
+
+	// -------------------------------------------------------------
+	// 3. CENTRAL TRANSFORMATION TUNNEL
+	// -------------------------------------------------------------
+	private buildTransformationTunnel() {
+		this.tunnelGroup = new THREE.Group();
+		this.tunnelGroup.position.set(-0.2, 0.72, 0.8);
+
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+		const darkMat = new THREE.MeshStandardMaterial({
+			color: 0x20352f,
+			roughness: 0.5,
+			metalness: 0.1
+		});
+
+		// Main horizontal cylinder body
+		// Radius 0.75, length 2.2 along X axis
+		const bodyGeo = new THREE.CylinderGeometry(0.75, 0.75, 2.2, 32, 1, true);
+		const bodyMesh = new THREE.Mesh(bodyGeo, mintMat);
+		bodyMesh.rotation.z = Math.PI / 2;
+		bodyMesh.castShadow = true;
+		bodyMesh.receiveShadow = true;
+		this.tunnelGroup.add(bodyMesh);
+		this.registerMaterial(bodyMesh, mintMat);
+
+		// White collar rings at ends and center
+		const ringEndL = new THREE.Mesh(new THREE.TorusGeometry(0.77, 0.08, 16, 32), whiteMat);
+		ringEndL.rotation.y = Math.PI / 2;
+		ringEndL.position.x = -1.1;
+		this.tunnelGroup.add(ringEndL);
+
+		const ringEndR = new THREE.Mesh(new THREE.TorusGeometry(0.77, 0.08, 16, 32), whiteMat);
+		ringEndR.rotation.y = Math.PI / 2;
+		ringEndR.position.x = 1.1;
+		this.tunnelGroup.add(ringEndR);
+
+		const ringMid = new THREE.Mesh(new THREE.CylinderGeometry(0.82, 0.82, 0.28, 32), whiteMat);
+		ringMid.rotation.z = Math.PI / 2;
+		this.tunnelGroup.add(ringMid);
+
+		// Support legs holding the cylinder elevated
+		for (const xOff of [-0.7, 0.7]) {
+			const leg = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.72, 1.2), mintMat);
+			leg.position.set(xOff, -0.36, 0);
+			this.tunnelGroup.add(leg);
+		}
+
+		// Top Active Indicator LED (Pulsing Green / Cyan)
+		const ledGeo = new THREE.SphereGeometry(0.11, 16, 16);
+		const ledMat = new THREE.MeshStandardMaterial({
+			color: 0x00ffaa,
+			emissive: 0x00ffaa,
+			emissiveIntensity: 1.2,
+			roughness: 0.2
+		});
+		this.tunnelLed = new THREE.Mesh(ledGeo, ledMat);
+		this.tunnelLed.position.set(0, 0.95, 0);
+		this.tunnelGroup.add(this.tunnelLed);
+
+		// Interior Point Light for glowing transformation
+		this.tunnelPointLight = new THREE.PointLight(0x00e5ff, 2.0, 3.5);
+		this.tunnelPointLight.position.set(0, 0, 0);
+		this.tunnelGroup.add(this.tunnelPointLight);
+
+		this.explodeElements.push({
+			object: bodyMesh,
+			basePos: bodyMesh.position.clone(),
+			targetOffset: new THREE.Vector3(0, 1.4, 0)
+		});
+
+		this.rootGroup.add(this.tunnelGroup);
+	}
+
+	// -------------------------------------------------------------
+	// 4. CONTINUOUS LOOPING CONVEYOR BELT & CARRIER ITEMS
+	// -------------------------------------------------------------
+	private buildConveyorLoop() {
+		this.conveyorGroup = new THREE.Group();
+		this.itemsGroup = new THREE.Group();
+
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf2f6f0,
+			roughness: 0.3,
+			metalness: 0.05
+		});
+		const legMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.4,
+			metalness: 0.1
+		});
+
+		// Smooth closed path looping from Station A -> Tunnel -> U-turn -> Station B -> Return loop
+		const curvePoints = [
+			new THREE.Vector3(-4.2, 0.45, 0.8), // Exit Station A
+			new THREE.Vector3(-2.2, 0.45, 0.8), // Approach tunnel
+			new THREE.Vector3(-0.2, 0.45, 0.8), // Inside tunnel
+			new THREE.Vector3(1.8, 0.45, 0.8),  // Exit tunnel
+			new THREE.Vector3(3.6, 0.45, 0.6),  // Start sweep
+			new THREE.Vector3(4.8, 0.45, -0.4), // Outer curve
+			new THREE.Vector3(4.2, 0.45, -1.6), // Approach Station B
+			new THREE.Vector3(2.4, 0.45, -1.8), // Return curve
+			new THREE.Vector3(0.5, 0.45, -1.5), // Mid return path
+			new THREE.Vector3(-2.0, 0.45, -1.2), // Upper return
+			new THREE.Vector3(-4.0, 0.45, -0.4) // Re-enter Station A
+		];
+
+		this.conveyorCurve = new THREE.CatmullRomCurve3(curvePoints, true, 'catmullrom', 0.25);
+
+		// Build the extruded conveyor belt ribbon
+		const points = this.conveyorCurve.getSpacedPoints(240);
+		const beltShape = new THREE.Shape();
+		beltShape.moveTo(-0.28, -0.04);
+		beltShape.lineTo(0.28, -0.04);
+		beltShape.lineTo(0.28, 0.04);
+		beltShape.lineTo(-0.28, 0.04);
+		beltShape.closePath();
+
+		const extrudeSettings = {
+			steps: 240,
+			extrudePath: this.conveyorCurve,
+			bevelEnabled: false
+		};
+		const beltGeo = new THREE.ExtrudeGeometry(beltShape, extrudeSettings);
+		const beltMesh = new THREE.Mesh(beltGeo, whiteMat);
+		beltMesh.castShadow = true;
+		beltMesh.receiveShadow = true;
+		this.conveyorGroup.add(beltMesh);
+		this.registerMaterial(beltMesh, whiteMat);
+
+		// Add support posts every few meters along the track
+		for (let i = 0; i < points.length; i += 20) {
+			const pt = points[i];
+			// Do not place legs directly inside reactors or tunnel
+			if (pt.distanceTo(new THREE.Vector3(-4.2, 0.45, 0.8)) < 1.2) continue;
+			if (pt.distanceTo(new THREE.Vector3(4.6, 0.45, -1.6)) < 1.8) continue;
+			if (Math.abs(pt.x + 0.2) < 0.8 && Math.abs(pt.z - 0.8) < 0.5) continue;
+
+			const post = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, pt.y, 12), legMat);
+			post.position.set(pt.x, pt.y / 2, pt.z);
+			post.castShadow = true;
+			this.conveyorGroup.add(post);
+		}
+
+		// -------------------------------------------------------------
+		// Moving Carrier Items:
+		// Metallic Silver Cubes (Raw materials) -> Glowing Coral Gems (Finished Cells)
+		// -------------------------------------------------------------
+		const cubeGeo = new THREE.BoxGeometry(0.3, 0.3, 0.3);
+		const cubeMat = new THREE.MeshStandardMaterial({
+			color: 0xdde3e8,
+			roughness: 0.2,
 			metalness: 0.92
 		});
-		const floor = new THREE.Mesh(floorGeo, floorMat);
-		floor.rotation.x = -Math.PI / 2;
-		floor.position.y = 0;
-		floor.receiveShadow = true;
-		this.scene.add(floor);
 
-		// Clean technical laser lines on floor
-		const grid = new THREE.GridHelper(50, 50, 0xff3b00, 0x181c24);
-		grid.position.y = 0.005;
-		this.scene.add(grid);
-
-		// Safety area perimeter around battery line
-		const perimeterGeo = new THREE.RingGeometry(8.2, 8.35, 64);
-		const perimeterMat = new THREE.MeshBasicMaterial({
-			color: 0xff3b00,
-			side: THREE.DoubleSide,
-			transparent: true,
-			opacity: 0.55
-		});
-		const perimeter = new THREE.Mesh(perimeterGeo, perimeterMat);
-		perimeter.rotation.x = -Math.PI / 2;
-		perimeter.position.y = 0.01;
-		this.scene.add(perimeter);
-	}
-
-	private buildBatteryProductionLine() {
-		this.lineRoot.position.set(0, 0, 0);
-
-		// ==========================================
-		// 1. CONVEYOR TRANSPORTER
-		// ==========================================
-		const conveyorLength = 16.0;
-		const conveyorWidth = 1.4;
-		const conveyorHeight = 0.75;
-
-		// Side rails (Anodized aluminum with yellow/black hazard trim)
-		const railGeo = new THREE.BoxGeometry(conveyorLength, 0.16, 0.08);
-		const railMat = new THREE.MeshStandardMaterial({
-			color: 0x242832,
-			metalness: 0.85,
-			roughness: 0.25
+		const gemGeo = new THREE.IcosahedronGeometry(0.2, 0);
+		const gemMat = new THREE.MeshStandardMaterial({
+			color: 0xff4d6d,
+			roughness: 0.15,
+			metalness: 0.1,
+			emissive: 0xff2550,
+			emissiveIntensity: 0.6
 		});
 
-		const leftRail = new THREE.Mesh(railGeo, railMat);
-		leftRail.position.set(0, conveyorHeight, conveyorWidth / 2);
-		leftRail.castShadow = true;
-		this.conveyorGroup.add(leftRail);
-
-		const rightRail = new THREE.Mesh(railGeo, railMat);
-		rightRail.position.set(0, conveyorHeight, -conveyorWidth / 2);
-		rightRail.castShadow = true;
-		this.conveyorGroup.add(rightRail);
-
-		// Conveyor belt bed
-		const bedGeo = new THREE.BoxGeometry(conveyorLength - 0.2, 0.08, conveyorWidth - 0.12);
-		const bedMat = new THREE.MeshStandardMaterial({
-			color: 0x111317,
-			metalness: 0.4,
-			roughness: 0.6
-		});
-		const bed = new THREE.Mesh(bedGeo, bedMat);
-		bed.position.set(0, conveyorHeight - 0.04, 0);
-		bed.receiveShadow = true;
-		this.conveyorGroup.add(bed);
-
-		// Stainless steel rollers
-		const rollerGeo = new THREE.CylinderGeometry(0.045, 0.045, conveyorWidth - 0.14, 16);
-		const rollerMat = new THREE.MeshStandardMaterial({
-			color: 0x8a92a0,
-			metalness: 0.95,
-			roughness: 0.15
-		});
-		const numRollers = 32;
-		for (let i = 0; i < numRollers; i++) {
-			const roller = new THREE.Mesh(rollerGeo, rollerMat);
-			const x = -conveyorLength / 2 + 0.4 + (i * (conveyorLength - 0.8)) / (numRollers - 1);
-			roller.position.set(x, conveyorHeight + 0.015, 0);
-			roller.rotation.x = Math.PI / 2;
-			this.conveyorGroup.add(roller);
-		}
-
-		// Support legs
-		const legGeo = new THREE.BoxGeometry(0.12, conveyorHeight, 0.12);
-		const legMat = new THREE.MeshStandardMaterial({ color: 0x181a20, metalness: 0.8, roughness: 0.4 });
-		const legPositionsX = [-6.8, -3.4, 0.0, 3.4, 6.8];
-		for (const lx of legPositionsX) {
-			const leg1 = new THREE.Mesh(legGeo, legMat);
-			leg1.position.set(lx, conveyorHeight / 2, conveyorWidth / 2 - 0.06);
-			leg1.castShadow = true;
-			this.conveyorGroup.add(leg1);
-
-			const leg2 = new THREE.Mesh(legGeo, legMat);
-			leg2.position.set(lx, conveyorHeight / 2, -conveyorWidth / 2 + 0.06);
-			leg2.castShadow = true;
-			this.conveyorGroup.add(leg2);
-		}
-
-		this.lineRoot.add(this.conveyorGroup);
-
-		// ==========================================
-		// 2. CENTRAL STATION: LASER BUSBAR WELDING GANTRY
-		// ==========================================
-		const gantryGroup = new THREE.Group();
-		gantryGroup.position.set(0, 0, 0);
-
-		// Upright pillars
-		const pillarGeo = new THREE.BoxGeometry(0.25, 3.2, 0.25);
-		const pillarMat = new THREE.MeshStandardMaterial({ color: 0x1a1d24, metalness: 0.8, roughness: 0.3 });
-
-		const p1 = new THREE.Mesh(pillarGeo, pillarMat);
-		p1.position.set(-0.8, 1.6, 1.4);
-		p1.castShadow = true;
-		gantryGroup.add(p1);
-
-		const p2 = new THREE.Mesh(pillarGeo, pillarMat);
-		p2.position.set(0.8, 1.6, 1.4);
-		p2.castShadow = true;
-		gantryGroup.add(p2);
-
-		const p3 = new THREE.Mesh(pillarGeo, pillarMat);
-		p3.position.set(-0.8, 1.6, -1.4);
-		p3.castShadow = true;
-		gantryGroup.add(p3);
-
-		const p4 = new THREE.Mesh(pillarGeo, pillarMat);
-		p4.position.set(0.8, 1.6, -1.4);
-		p4.castShadow = true;
-		gantryGroup.add(p4);
-
-		// Crossbeam
-		const beamGeo = new THREE.BoxGeometry(2.0, 0.3, 3.1);
-		const beam = new THREE.Mesh(beamGeo, pillarMat);
-		beam.position.set(0, 3.05, 0);
-		beam.castShadow = true;
-		gantryGroup.add(beam);
-
-		// Optical Laser Welding Head with IPG fiber optical collimator
-		const laserHeadGroup = new THREE.Group();
-		laserHeadGroup.position.set(0, 2.3, 0);
-
-		const headBodyGeo = new THREE.CylinderGeometry(0.18, 0.12, 0.7, 24);
-		const headBodyMat = new THREE.MeshStandardMaterial({
-			color: 0x2a2f3a,
-			metalness: 0.9,
-			roughness: 0.2
-		});
-		const headBody = new THREE.Mesh(headBodyGeo, headBodyMat);
-		laserHeadGroup.add(headBody);
-
-		// Laser nozzle
-		const nozzleGeo = new THREE.CylinderGeometry(0.06, 0.02, 0.25, 24);
-		const nozzleMat = new THREE.MeshStandardMaterial({
-			color: 0xd4a017, // Brass / gold optics ring
-			metalness: 0.95,
-			roughness: 0.15
-		});
-		const nozzle = new THREE.Mesh(nozzleGeo, nozzleMat);
-		nozzle.position.y = -0.42;
-		laserHeadGroup.add(nozzle);
-
-		// Optical Fiber Cable leading upwards
-		const cableGeo = new THREE.CylinderGeometry(0.025, 0.025, 1.2, 16);
-		const cableMat = new THREE.MeshStandardMaterial({ color: 0xff3b00, metalness: 0.2, roughness: 0.6 });
-		const cable = new THREE.Mesh(cableGeo, cableMat);
-		cable.position.set(0.1, 0.65, 0);
-		cable.rotation.z = 0.25;
-		laserHeadGroup.add(cable);
-
-		gantryGroup.add(laserHeadGroup);
-
-		// Vertical pulsating blue/cyan laser beam
-		const beamLength = 1.25;
-		const laserBeamGeo = new THREE.CylinderGeometry(0.015, 0.035, beamLength, 16);
-		const laserBeamMat = new THREE.MeshBasicMaterial({
-			color: 0x00f0ff,
-			transparent: true,
-			opacity: 0.85,
-			blending: THREE.AdditiveBlending
-		});
-		this.laserBeamMesh = new THREE.Mesh(laserBeamGeo, laserBeamMat);
-		this.laserBeamMesh.position.set(0, 1.45, 0);
-		gantryGroup.add(this.laserBeamMesh);
-
-		this.workstationsGroup.add(gantryGroup);
-
-		// ==========================================
-		// 3. LEFT STATION: ROBOTIC CELL PICK & PLACE
-		// ==========================================
-		const robotStation = new THREE.Group();
-		robotStation.position.set(-3.8, 0, 0);
-
-		// Heavy pedestal
-		const pedGeo = new THREE.CylinderGeometry(0.55, 0.65, 0.75, 32);
-		const pedMat = new THREE.MeshStandardMaterial({ color: 0x1b1e24, metalness: 0.8, roughness: 0.3 });
-		const pedestal = new THREE.Mesh(pedGeo, pedMat);
-		pedestal.position.y = 0.375;
-		pedestal.castShadow = true;
-		robotStation.add(pedestal);
-
-		// Articulated robot arm base (KUKA/Fanuc style in PROMSYS Orange)
-		const armBaseGeo = new THREE.CylinderGeometry(0.38, 0.42, 0.4, 24);
-		const armOrangeMat = new THREE.MeshStandardMaterial({
-			color: 0xff3b00,
-			metalness: 0.65,
-			roughness: 0.3
-		});
-		const armBase = new THREE.Mesh(armBaseGeo, armOrangeMat);
-		armBase.position.y = 0.95;
-		robotStation.add(armBase);
-
-		// Arm Link 1
-		const armLink1Geo = new THREE.BoxGeometry(0.24, 1.3, 0.24);
-		const armLink1 = new THREE.Mesh(armLink1Geo, armOrangeMat);
-		armLink1.position.set(0.15, 1.6, 0);
-		armLink1.rotation.z = -0.45;
-		armLink1.castShadow = true;
-		robotStation.add(armLink1);
-
-		// Arm Link 2
-		const armLink2Geo = new THREE.BoxGeometry(0.18, 1.1, 0.18);
-		const armLink2 = new THREE.Mesh(armLink2Geo, armOrangeMat);
-		armLink2.position.set(0.65, 2.15, 0);
-		armLink2.rotation.z = 0.85;
-		armLink2.castShadow = true;
-		robotStation.add(armLink2);
-
-		// Vacuum Gripper Head with matrix suction pads
-		const gripperBaseGeo = new THREE.BoxGeometry(0.8, 0.08, 0.5);
-		const gripperMat = new THREE.MeshStandardMaterial({ color: 0x2e3440, metalness: 0.9, roughness: 0.2 });
-		const gripper = new THREE.Mesh(gripperBaseGeo, gripperMat);
-		gripper.position.set(0.85, 1.45, 0);
-		robotStation.add(gripper);
-
-		// Mini suction cups
-		const cupGeo = new THREE.CylinderGeometry(0.04, 0.03, 0.08, 12);
-		const cupMat = new THREE.MeshStandardMaterial({ color: 0x00d4ff, metalness: 0.2, roughness: 0.4 });
-		for (let cx = -0.3; cx <= 0.3; cx += 0.2) {
-			for (let cz = -0.15; cz <= 0.15; cz += 0.15) {
-				const cup = new THREE.Mesh(cupGeo, cupMat);
-				cup.position.set(0.85 + cx, 1.38, cz);
-				robotStation.add(cup);
-			}
-		}
-
-		this.workstationsGroup.add(robotStation);
-
-		// ==========================================
-		// 4. RIGHT STATION: 100% INLINE EOL TESTING GANTRY
-		// ==========================================
-		const eolStation = new THREE.Group();
-		eolStation.position.set(3.8, 0, 0);
-
-		// Arch frame
-		const archGeo = new THREE.BoxGeometry(0.2, 2.8, 0.2);
-		const archP1 = new THREE.Mesh(archGeo, pillarMat);
-		archP1.position.set(0, 1.4, 1.2);
-		eolStation.add(archP1);
-
-		const archP2 = new THREE.Mesh(archGeo, pillarMat);
-		archP2.position.set(0, 1.4, -1.2);
-		eolStation.add(archP2);
-
-		const archTopGeo = new THREE.BoxGeometry(0.25, 0.25, 2.6);
-		const archTop = new THREE.Mesh(archTopGeo, pillarMat);
-		archTop.position.set(0, 2.75, 0);
-		eolStation.add(archTop);
-
-		// Automated Kelvin Diagnostic Head
-		const testerHeadGeo = new THREE.BoxGeometry(0.9, 0.35, 0.65);
-		const testerMat = new THREE.MeshStandardMaterial({
-			color: 0x1d212a,
-			metalness: 0.85,
-			roughness: 0.25
-		});
-		const testerHead = new THREE.Mesh(testerHeadGeo, testerMat);
-		testerHead.position.set(0, 1.6, 0);
-		eolStation.add(testerHead);
-
-		// Gold contact test pins array
-		const pinGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.15, 12);
-		const pinMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.98, roughness: 0.1 });
-		for (let px = -0.35; px <= 0.35; px += 0.12) {
-			for (let pz = -0.22; pz <= 0.22; pz += 0.11) {
-				const pin = new THREE.Mesh(pinGeo, pinMat);
-				pin.position.set(px, 1.35, pz);
-				eolStation.add(pin);
-			}
-		}
-
-		// Status Indicator light (Green = PASS)
-		const statusLightGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.04, 16);
-		const statusLightMat = new THREE.MeshBasicMaterial({ color: 0x00ff66 });
-		const statusLight = new THREE.Mesh(statusLightGeo, statusLightMat);
-		statusLight.position.set(0, 1.8, 0.33);
-		statusLight.rotation.x = Math.PI / 2;
-		eolStation.add(statusLight);
-
-		this.workstationsGroup.add(eolStation);
-		this.lineRoot.add(this.workstationsGroup);
-
-		// ==========================================
-		// 5. FEATURED CENTRAL HIGH-DETAIL BATTERY PACK
-		// ==========================================
-		this.buildFeaturedBatteryPack();
-		this.lineRoot.add(this.featuredBatteryPack);
-
-		// ==========================================
-		// 6. MULTIPLE MOVING PACKS ON CONVEYOR
-		// ==========================================
-		this.setupMovingPacks();
-		this.lineRoot.add(this.movingPacksGroup);
-
-		this.scene.add(this.lineRoot);
-	}
-
-	/**
-	 * Builds the central high-detail battery pack with distinct physical layers
-	 * that separate cleanly during Exploded View (Взрыв-схема).
-	 */
-	private buildFeaturedBatteryPack() {
-		this.featuredBatteryPack.position.set(0, 0.82, 0);
-
-		const packWidth = 1.15;
-		const packLength = 1.65;
-
-		// 1. Bottom Aluminum Tray / Structural Enclosure
-		const trayGeo = new THREE.BoxGeometry(packWidth, 0.08, packLength);
-		const trayMat = new THREE.MeshStandardMaterial({
-			color: 0x181a20,
-			metalness: 0.9,
-			roughness: 0.2
-		});
-		const bottomTray = new THREE.Mesh(trayGeo, trayMat);
-		bottomTray.position.set(0, 0, 0);
-		bottomTray.castShadow = true;
-		bottomTray.receiveShadow = true;
-		this.featuredBatteryPack.add(bottomTray);
-		this.explodeLayers.bottomTray = bottomTray;
-
-		// 2. Liquid Cooling Plate with serpentine channels
-		const coolGeo = new THREE.BoxGeometry(packWidth - 0.04, 0.03, packLength - 0.04);
-		const coolMat = new THREE.MeshStandardMaterial({
-			color: 0x00d4ff,
-			metalness: 0.8,
-			roughness: 0.25
-		});
-		const coolingPlate = new THREE.Mesh(coolGeo, coolMat);
-		coolingPlate.position.set(0, 0.055, 0);
-		this.featuredBatteryPack.add(coolingPlate);
-		this.explodeLayers.coolingPlate = coolingPlate;
-
-		// 3. Lower Insulating Cell Matrix Holder
-		const holderMat = new THREE.MeshStandardMaterial({
-			color: 0x14161b,
-			roughness: 0.5,
-			metalness: 0.3
-		});
-
-		// 4. Matrix of 48 Li-ion 21700 Cylindrical Cells
-		const cellsMatrixGroup = new THREE.Group();
-		cellsMatrixGroup.position.set(0, 0.22, 0);
-
-		const cellHeight = 0.32;
-		const cellRadius = 0.048;
-		const cellGeo = new THREE.CylinderGeometry(cellRadius, cellRadius, cellHeight, 20);
-
-		// Emerald Li-ion sleeve with metallic silver end-caps
-		const cellBodyMat = new THREE.MeshStandardMaterial({
-			color: 0x00b06f, // Emerald Green Li-ion energy look
-			metalness: 0.7,
-			roughness: 0.28
-		});
-		const capGeo = new THREE.CylinderGeometry(cellRadius * 0.7, cellRadius * 0.7, 0.015, 16);
-		const capMat = new THREE.MeshStandardMaterial({
-			color: 0xd8dce2,
-			metalness: 0.98,
-			roughness: 0.1
-		});
-
-		const rows = 4;
-		const cols = 12;
-		const startX = -((rows - 1) * (cellRadius * 2 + 0.045)) / 2;
-		const startZ = -((cols - 1) * (cellRadius * 2 + 0.035)) / 2;
-
-		for (let r = 0; r < rows; r++) {
-			for (let c = 0; c < cols; c++) {
-				const x = startX + r * (cellRadius * 2 + 0.045);
-				const z = startZ + c * (cellRadius * 2 + 0.035);
-
-				const cell = new THREE.Mesh(cellGeo, cellBodyMat);
-				cell.position.set(x, 0, z);
-				cell.castShadow = true;
-				cellsMatrixGroup.add(cell);
-
-				// Top terminal cap
-				const cap = new THREE.Mesh(capGeo, capMat);
-				cap.position.set(x, cellHeight / 2 + 0.008, z);
-				cellsMatrixGroup.add(cap);
-			}
-		}
-		this.featuredBatteryPack.add(cellsMatrixGroup);
-		this.explodeLayers.cellsMatrix = cellsMatrixGroup;
-
-		// 5. Upper Cell Retention Spacer
-		const holderUpperGeo = new THREE.BoxGeometry(packWidth - 0.06, 0.04, packLength - 0.06);
-		const holderUpper = new THREE.Mesh(holderUpperGeo, holderMat);
-		holderUpper.position.set(0, 0.4, 0);
-		this.featuredBatteryPack.add(holderUpper);
-		this.explodeLayers.holderUpper = holderUpper;
-
-		// 6. Pure Copper Laser-Welded Busbars
-		const busbarsGroup = new THREE.Group();
-		busbarsGroup.position.set(0, 0.44, 0);
-
-		const busbarMat = new THREE.MeshStandardMaterial({
-			color: 0xc87533, // Pure Polished Copper
-			metalness: 0.95,
-			roughness: 0.18
-		});
-
-		// 6 parallel busbar strips bridging the terminals
-		for (let r = 0; r < rows; r++) {
-			const x = startX + r * (cellRadius * 2 + 0.045);
-			const stripGeo = new THREE.BoxGeometry(0.065, 0.012, packLength - 0.12);
-			const strip = new THREE.Mesh(stripGeo, busbarMat);
-			strip.position.set(x, 0, 0);
-			strip.castShadow = true;
-			busbarsGroup.add(strip);
-		}
-		this.featuredBatteryPack.add(busbarsGroup);
-		this.explodeLayers.busbars = busbarsGroup;
-
-		// 7. BMS Electronic Board with Chips & Connectors
-		const bmsGroup = new THREE.Group();
-		bmsGroup.position.set(0, 0.52, 0);
-
-		const pcbGeo = new THREE.BoxGeometry(packWidth - 0.14, 0.018, 0.45);
-		const pcbMat = new THREE.MeshStandardMaterial({
-			color: 0x0a2f1d, // Dark green FR4 PCB
-			metalness: 0.3,
-			roughness: 0.4
-		});
-		const pcb = new THREE.Mesh(pcbGeo, pcbMat);
-		pcb.position.set(0, 0, -0.4);
-		bmsGroup.add(pcb);
-
-		// Microcontroller ICs on BMS
-		const icGeo = new THREE.BoxGeometry(0.09, 0.02, 0.09);
-		const icMat = new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.9, roughness: 0.2 });
-		for (let i = 0; i < 4; i++) {
-			const ic = new THREE.Mesh(icGeo, icMat);
-			ic.position.set(-0.3 + i * 0.2, 0.015, -0.4);
-			bmsGroup.add(ic);
-		}
-
-		// Heavy Duty Orange High-Voltage Battery Connector (Amphenol/TE style)
-		const connGeo = new THREE.BoxGeometry(0.16, 0.14, 0.14);
-		const connMat = new THREE.MeshStandardMaterial({ color: 0xff5500, metalness: 0.4, roughness: 0.4 });
-		const conn = new THREE.Mesh(connGeo, connMat);
-		conn.position.set(0.35, 0.06, -0.4);
-		bmsGroup.add(conn);
-
-		this.featuredBatteryPack.add(bmsGroup);
-		this.explodeLayers.bmsBoard = bmsGroup;
-
-		// 8. Top Extruded Aluminum Enclosure Cover with Laser Weld Rim
-		const coverGeo = new THREE.BoxGeometry(packWidth, 0.06, packLength);
-		const coverMat = new THREE.MeshStandardMaterial({
-			color: 0x22262f, // Brushed aerospace aluminum
-			metalness: 0.92,
-			roughness: 0.22
-		});
-		const topCover = new THREE.Mesh(coverGeo, coverMat);
-		topCover.position.set(0, 0.62, 0);
-		topCover.castShadow = true;
-		this.featuredBatteryPack.add(topCover);
-		this.explodeLayers.topCover = topCover;
-
-		// Store mesh materials for X-Ray toggle
-		this.featuredBatteryPack.traverse((child) => {
-			if ((child as THREE.Mesh).isMesh) {
-				const mesh = child as THREE.Mesh;
-				this.defaultMaterials.set(mesh, mesh.material);
-				this.wireframeMaterials.set(
-					mesh,
-					new THREE.MeshBasicMaterial({
-						color: 0x00e5ff,
-						wireframe: true,
-						transparent: true,
-						opacity: 0.5
-					})
-				);
-			}
-		});
-	}
-
-	private setupMovingPacks() {
-		// Spawn 3 background battery packs traveling along conveyor
-		const packOffsets = [-5.2, 4.8, -10.0];
-		for (let i = 0; i < packOffsets.length; i++) {
-			const pack = new THREE.Group();
-			pack.position.set(packOffsets[i], 0.82, 0);
-
-			// Lightweight enclosure
-			const boxGeo = new THREE.BoxGeometry(1.15, 0.45, 1.65);
-			const boxMat = new THREE.MeshStandardMaterial({
-				color: 0x1e222b,
-				metalness: 0.85,
-				roughness: 0.25
+		const itemCount = 18;
+		for (let i = 0; i < itemCount; i++) {
+			const group = new THREE.Group();
+
+			const meshCube = new THREE.Mesh(cubeGeo, cubeMat);
+			meshCube.castShadow = true;
+			group.add(meshCube);
+
+			const meshGem = new THREE.Mesh(gemGeo, gemMat);
+			meshGem.castShadow = true;
+			group.add(meshGem);
+
+			this.carrierItems.push({
+				meshCube,
+				meshGem,
+				group,
+				offset: i / itemCount
 			});
-			const box = new THREE.Mesh(boxGeo, boxMat);
-			box.castShadow = true;
-			pack.add(box);
 
-			// Top cover strip
-			const stripGeo = new THREE.BoxGeometry(0.3, 0.02, 1.4);
-			const stripMat = new THREE.MeshStandardMaterial({ color: 0x00d4ff, metalness: 0.9, roughness: 0.2 });
-			const strip = new THREE.Mesh(stripGeo, stripMat);
-			strip.position.y = 0.23;
-			pack.add(strip);
-
-			this.movingPacksGroup.add(pack);
+			this.itemsGroup.add(group);
 		}
+
+		this.rootGroup.add(this.conveyorGroup);
+		this.rootGroup.add(this.itemsGroup);
 	}
 
-	private setupWeldingSparks() {
-		const sparkCount = 120;
-		this.sparkPositions = new Float32Array(sparkCount * 3);
-		this.sparkVelocities = new Float32Array(sparkCount * 3);
+	// -------------------------------------------------------------
+	// 5. PALLET WAREHOUSE DEPOT (Station C - Top Left)
+	// -------------------------------------------------------------
+	private buildPalletWarehouseDepot() {
+		this.palletGroup = new THREE.Group();
+		this.palletGroup.position.set(-1.5, 0, -3.0);
 
-		for (let i = 0; i < sparkCount; i++) {
-			this.resetSpark(i);
-		}
-
-		const sparkGeo = new THREE.BufferGeometry();
-		sparkGeo.setAttribute('position', new THREE.BufferAttribute(this.sparkPositions, 3));
-
-		const sparkMat = new THREE.PointsMaterial({
-			color: 0x00ffff,
-			size: 0.08,
-			transparent: true,
-			opacity: 0.95,
-			blending: THREE.AdditiveBlending
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+		const cubeMat = new THREE.MeshStandardMaterial({
+			color: 0xdde3e8,
+			roughness: 0.2,
+			metalness: 0.92
 		});
 
-		this.weldingSparks = new THREE.Points(sparkGeo, sparkMat);
-		this.scene.add(this.weldingSparks);
-	}
+		// Elevated rounded square platform
+		const plat = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.35, 2.4), mintMat);
+		plat.position.y = 0.175;
+		plat.castShadow = true;
+		plat.receiveShadow = true;
+		this.palletGroup.add(plat);
+		this.registerMaterial(plat, mintMat);
 
-	private resetSpark(i: number) {
-		// Emit from the laser welding focal point
-		this.sparkPositions[i * 3 + 0] = (Math.random() - 0.5) * 0.12;
-		this.sparkPositions[i * 3 + 1] = 1.32;
-		this.sparkPositions[i * 3 + 2] = (Math.random() - 0.5) * 0.12;
+		const platTrim = new THREE.Mesh(new THREE.BoxGeometry(2.48, 0.08, 2.48), whiteMat);
+		platTrim.position.y = 0.32;
+		this.palletGroup.add(platTrim);
 
-		const angle = Math.random() * Math.PI * 2;
-		const speed = 0.8 + Math.random() * 2.2;
-		this.sparkVelocities[i * 3 + 0] = Math.cos(angle) * speed;
-		this.sparkVelocities[i * 3 + 1] = 1.2 + Math.random() * 2.5; // fly upwards
-		this.sparkVelocities[i * 3 + 2] = Math.sin(angle) * speed;
-	}
+		// Neatly stacked 3D pyramid/grid of silver metallic cubes
+		const cubeSize = 0.32;
+		const spacing = 0.38;
 
-	// ----------------------------------------------------
-	// Storyboard & Scroll Integration
-	// ----------------------------------------------------
-
-	public setScrollProgress(progress: number, sectionName?: string) {
-		if (this.isInteractiveMode) return;
-
-		const p = Math.max(0, Math.min(1, progress));
-
-		if (p < 0.2) {
-			// Hero: Wide overview of battery production line
-			const localP = p / 0.2;
-			this.targetCamPos.set(-2.0 + localP * 1.5, 3.8 - localP * 0.4, 7.8 - localP * 1.2);
-			this.targetLookAt.set(0, 1.0, 0);
-			this.targetFov = 38;
-			this.targetExplode = 0;
-		} else if (p < 0.45) {
-			// Section 02: Telemetry / Busbar Laser Welding Station
-			const localP = (p - 0.2) / 0.25;
-			this.targetCamPos.set(1.8 - localP * 0.4, 2.2 - localP * 0.2, 2.8 - localP * 0.5);
-			this.targetLookAt.set(0, 1.2, 0);
-			this.targetFov = 34;
-			this.targetExplode = 0;
-		} else if (p < 0.72) {
-			// Section 03: Modules / Exploded View of Battery Pack
-			const localP = (p - 0.45) / 0.27;
-			this.targetCamPos.set(2.8 + localP * 0.6, 2.6 + localP * 0.8, 3.8);
-			this.targetLookAt.set(0, 1.4, 0);
-			this.targetFov = 36;
-			this.targetExplode = Math.min(1.0, localP * 1.3);
-		} else if (p < 0.9) {
-			// Section 04: Process Pipeline / EOL Testing
-			const localP = (p - 0.72) / 0.18;
-			this.targetCamPos.set(3.8 - localP * 1.5, 2.2, 3.2 - localP * 0.6);
-			this.targetLookAt.set(3.8, 1.1, 0);
-			this.targetFov = 38;
-			this.targetExplode = 0.2 * (1 - localP);
-		} else {
-			// Section 05: Cleanroom Architecture & Footer
-			const localP = (p - 0.9) / 0.1;
-			this.targetCamPos.set(0.0, 4.2 + localP * 0.6, 8.5);
-			this.targetLookAt.set(0, 1.0, 0);
-			this.targetFov = 40;
-			this.targetExplode = 0;
+		// Base layer: 3x3 grid
+		for (let r = -1; r <= 1; r++) {
+			for (let c = -1; c <= 1; c++) {
+				const cube = new THREE.Mesh(new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), cubeMat);
+				cube.position.set(c * spacing, 0.35 + cubeSize / 2, r * spacing);
+				cube.castShadow = true;
+				this.palletGroup.add(cube);
+			}
 		}
+
+		// Layer 2: 2x2 grid
+		for (let r = 0; r <= 1; r++) {
+			for (let c = 0; c <= 1; c++) {
+				const cube = new THREE.Mesh(new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), cubeMat);
+				cube.position.set((c - 0.5) * spacing, 0.35 + cubeSize * 1.5, (r - 0.5) * spacing);
+				cube.castShadow = true;
+				this.palletGroup.add(cube);
+			}
+		}
+
+		// Layer 3: Top single cube
+		const topCube = new THREE.Mesh(new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), cubeMat);
+		topCube.position.set(0, 0.35 + cubeSize * 2.5, 0);
+		topCube.castShadow = true;
+		this.palletGroup.add(topCube);
+
+		this.explodeElements.push({
+			object: this.palletGroup,
+			basePos: this.palletGroup.position.clone(),
+			targetOffset: new THREE.Vector3(0, 0.9, 0)
+		});
+
+		this.rootGroup.add(this.palletGroup);
 	}
 
-	// ----------------------------------------------------
-	// 3D Studio & Hotspot Actions
-	// ----------------------------------------------------
+	// -------------------------------------------------------------
+	// 6. AUTONOMOUS CONTROL CONSOLE (Station D - Foreground Center)
+	// -------------------------------------------------------------
+	private buildAutonomousControlConsole() {
+		this.consoleGroup = new THREE.Group();
+		this.consoleGroup.position.set(0.8, 0, 2.2);
+
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+
+		// Compact industrial console body with sloped top
+		const body = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.65, 0.6), mintMat);
+		body.position.y = 0.325;
+		body.castShadow = true;
+		body.receiveShadow = true;
+		this.consoleGroup.add(body);
+		this.registerMaterial(body, mintMat);
+
+		// White front service panel
+		const panel = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.25, 0.06), whiteMat);
+		panel.position.set(0, 0.25, 0.31);
+		this.consoleGroup.add(panel);
+
+		// Three miniature control levers/switches
+		for (let i = -1; i <= 1; i++) {
+			const lever = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.22, 8), whiteMat);
+			lever.position.set(i * 0.18, 0.72, 0);
+			lever.rotation.x = 0.25;
+			lever.castShadow = true;
+			this.consoleGroup.add(lever);
+
+			const knob = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), whiteMat);
+			knob.position.set(i * 0.18, 0.82, 0.03);
+			this.consoleGroup.add(knob);
+		}
+
+		this.rootGroup.add(this.consoleGroup);
+	}
+
+	// -------------------------------------------------------------
+	// 7. AUXILIARY DIORAMA DETAILS (Pipettes, Scattered Cubes)
+	// -------------------------------------------------------------
+	private buildAuxiliaryMiniatures() {
+		const whiteMat = new THREE.MeshStandardMaterial({
+			color: 0xf0f4ee,
+			roughness: 0.32,
+			metalness: 0.08
+		});
+		const mintMat = new THREE.MeshStandardMaterial({
+			color: 0x73a89d,
+			roughness: 0.38,
+			metalness: 0.12
+		});
+		const gemMat = new THREE.MeshStandardMaterial({
+			color: 0xff4d6d,
+			roughness: 0.15,
+			metalness: 0.1,
+			emissive: 0xff2550,
+			emissiveIntensity: 0.5
+		});
+		const cubeMat = new THREE.MeshStandardMaterial({
+			color: 0xdde3e8,
+			roughness: 0.2,
+			metalness: 0.92
+		});
+
+		// Two stylized condenser / pipette units in the foreground right
+		for (let i = 0; i < 2; i++) {
+			const zOff = 3.1 + i * 0.5;
+			const pGroup = new THREE.Group();
+			pGroup.position.set(3.4, 0.1, zOff);
+			pGroup.rotation.y = -0.65;
+
+			const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.2, 12), whiteMat);
+			tube.rotation.z = Math.PI / 2;
+			pGroup.add(tube);
+
+			const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), mintMat);
+			pGroup.add(bulb);
+
+			// Feet
+			const f1 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.1, 12), whiteMat);
+			f1.position.set(-0.55, -0.05, 0);
+			pGroup.add(f1);
+
+			const f2 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.1, 12), whiteMat);
+			f2.position.set(0.55, -0.05, 0);
+			pGroup.add(f2);
+
+			this.rootGroup.add(pGroup);
+		}
+
+		// Scattered sample gems and cubes on the floor (like in Image 1)
+		const gem1 = new THREE.Mesh(new THREE.IcosahedronGeometry(0.18, 0), gemMat);
+		gem1.position.set(-3.2, 0.15, -2.4);
+		gem1.rotation.set(0.4, 0.6, 0.2);
+		this.rootGroup.add(gem1);
+
+		const gem2 = new THREE.Mesh(new THREE.IcosahedronGeometry(0.18, 0), gemMat);
+		gem2.position.set(4.8, 0.15, 1.6);
+		gem2.rotation.set(-0.3, 0.2, 0.8);
+		this.rootGroup.add(gem2);
+
+		const floorCube = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.28), cubeMat);
+		floorCube.position.set(-0.2, 0.14, 3.4);
+		floorCube.rotation.y = 0.45;
+		this.rootGroup.add(floorCube);
+	}
+
+	// -------------------------------------------------------------
+	// Material Management for X-Ray
+	// -------------------------------------------------------------
+	private registerMaterial(mesh: THREE.Mesh, mat: THREE.Material) {
+		this.defaultMaterials.set(mesh, mat);
+		const wireMat = new THREE.MeshBasicMaterial({
+			color: 0x00e5ff,
+			wireframe: true,
+			transparent: true,
+			opacity: 0.75
+		});
+		this.wireframeMaterials.set(mesh, wireMat);
+	}
+
+	// -------------------------------------------------------------
+	// Animation Loop
+	// -------------------------------------------------------------
+	private animate = () => {
+		if (this.isDisposed) return;
+		this.reqId = requestAnimationFrame(this.animate);
+
+		const delta = Math.min(this.clock.getDelta(), 0.1);
+		const elapsedTime = this.clock.getElapsedTime();
+
+		// 1. Conveyor Movement & Transformation Logic
+		if (this.isKinematicsActive && this.conveyorCurve) {
+			for (const item of this.carrierItems) {
+				item.offset = (item.offset + delta * this.conveyorSpeed) % 1.0;
+				const pos = this.conveyorCurve.getPointAt(item.offset);
+				const tangent = this.conveyorCurve.getTangentAt(item.offset);
+
+				item.group.position.copy(pos);
+				item.group.position.y += 0.2; // elevated slightly above belt
+
+				// Align orientation along tangent
+				item.group.quaternion.setFromUnitVectors(new THREE.Vector3(1, 0, 0), tangent);
+
+				// Transformation condition:
+				// If before tunnel (traveling from Station A to tunnel at x = -0.2): raw cube!
+				// After tunnel / outbound to Station B: transformed glowing gem!
+				// Path travels: -4.2 -> -0.2 (tunnel) -> 1.8 -> 4.8
+				const isRaw = item.offset < 0.24 || item.offset > 0.88;
+
+				if (isRaw) {
+					item.meshCube.visible = true;
+					item.meshGem.visible = false;
+				} else {
+					item.meshCube.visible = false;
+					item.meshGem.visible = true;
+					// Rotating gem while traveling
+					item.meshGem.rotation.x += delta * 1.5;
+					item.meshGem.rotation.y += delta * 2.0;
+				}
+			}
+		}
+
+		// 2. Levitating Crystal Animation (Bobbing and Rotation)
+		if (this.levitatingCrystal) {
+			this.levitatingCrystal.rotation.x += delta * 0.8;
+			this.levitatingCrystal.rotation.y += delta * 1.2;
+			this.levitatingCrystal.position.y = 3.65 + Math.sin(elapsedTime * 2.2) * 0.08;
+			if (this.crystalPointLight) {
+				this.crystalPointLight.position.y = this.levitatingCrystal.position.y;
+				this.crystalPointLight.intensity = 2.2 + Math.sin(elapsedTime * 4.0) * 0.6;
+			}
+		}
+
+		// 3. Tunnel LED Pulsing & Glow
+		if (this.tunnelLed) {
+			const pulse = (Math.sin(elapsedTime * 3.5) + 1.0) * 0.5;
+			(this.tunnelLed.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.8 + pulse * 1.2;
+			if (this.tunnelPointLight) {
+				this.tunnelPointLight.intensity = 1.5 + pulse * 1.0;
+			}
+		}
+
+		// 4. Smooth Exploded View Interpolation
+		this.explodeProgress += (this.targetExplode - this.explodeProgress) * 0.08;
+		for (const el of this.explodeElements) {
+			el.object.position.lerpVectors(
+				el.basePos,
+				el.basePos.clone().add(el.targetOffset),
+				this.explodeProgress
+			);
+		}
+
+		// 5. Turntable 360° Auto-Rotate
+		if (this.isAutoRotate && !this.isInteractiveMode) {
+			this.rootGroup.rotation.y += delta * 0.35;
+		} else if (!this.isAutoRotate) {
+			this.rootGroup.rotation.y += (0 - this.rootGroup.rotation.y) * 0.08;
+		}
+
+		// 6. Camera Position & LookAt Lerp
+		if (!this.controls.enabled) {
+			this.currentCamPos.lerp(this.targetCamPos, 0.07);
+			this.currentLookAt.lerp(this.targetLookAt, 0.07);
+			this.camera.position.copy(this.currentCamPos);
+			this.camera.lookAt(this.currentLookAt);
+		} else {
+			this.controls.update();
+		}
+
+		// 7. Update Hotspot Screen Coordinates
+		this.updateHotspotScreenPositions();
+
+		// 8. FPS & Telemetry
+		this.frameCount++;
+		const now = performance.now();
+		if (now - this.lastFpsUpdate >= 500) {
+			this.currentFps = Math.round((this.frameCount * 1000) / (now - this.lastFpsUpdate));
+			this.frameCount = 0;
+			this.lastFpsUpdate = now;
+			this.emitTelemetry();
+		}
+
+		this.renderer.render(this.scene, this.camera);
+	};
+
+	// -------------------------------------------------------------
+	// Hotspots & Camera Controls
+	// -------------------------------------------------------------
+	private updateHotspotScreenPositions() {
+		if (!this.onHotspotScreenPositions) return;
+
+		const width = this.container.clientWidth;
+		const height = this.container.clientHeight;
+		if (!width || !height) return;
+
+		const results: { id: string; x: number; y: number; visible: boolean }[] = [];
+
+		for (const spot of FACTORY_HOTSPOTS) {
+			const worldPos = new THREE.Vector3(...spot.position);
+			// Apply root group rotation
+			worldPos.applyEuler(this.rootGroup.rotation);
+
+			const screenPos = worldPos.clone().project(this.camera);
+			const isBehindCamera = screenPos.z > 1.0;
+
+			const x = (screenPos.x * 0.5 + 0.5) * width;
+			const y = (-screenPos.y * 0.5 + 0.5) * height;
+
+			const visible = !isBehindCamera && x >= 0 && x <= width && y >= 0 && y <= height;
+
+			results.push({ id: spot.id, x, y, visible });
+		}
+
+		this.onHotspotScreenPositions(results);
+	}
 
 	public focusHotspot(hotspot: HotspotDef) {
 		this.isInteractiveMode = true;
-		this.controls.enabled = true;
-		this.targetCamPos.set(...hotspot.cameraPos);
+		this.controls.enabled = false;
+
 		this.targetLookAt.set(...hotspot.cameraTarget);
-		this.controls.target.set(...hotspot.cameraTarget);
+		this.targetCamPos.set(...hotspot.cameraPos);
+		this.targetFov = 32;
+		this.camera.fov = this.targetFov;
+		this.camera.updateProjectionMatrix();
 	}
 
 	public resetStudioView() {
-		this.targetCamPos.set(0, 3.2, 6.8);
-		this.targetLookAt.set(0, 1.0, 0);
-		this.controls.target.set(0, 1.0, 0);
-		this.targetFov = 38;
-		this.targetExplode = 0;
+		this.isInteractiveMode = false;
+		this.controls.enabled = false;
+
+		this.targetLookAt.copy(this.defaultLookAt);
+		this.targetCamPos.copy(this.defaultCamPos);
+		this.targetFov = 28;
+		this.camera.fov = this.targetFov;
+		this.camera.updateProjectionMatrix();
+	}
+
+	// Direct Pointer Dragging & Zoom
+	public rotateBy(dx: number, dy: number) {
+		this.isInteractiveMode = true;
+		this.controls.enabled = false;
+
+		const rotSpeed = 0.006;
+		const radius = Math.hypot(
+			this.currentCamPos.x - this.currentLookAt.x,
+			this.currentCamPos.z - this.currentLookAt.z
+		);
+		let angle = Math.atan2(
+			this.currentCamPos.z - this.currentLookAt.z,
+			this.currentCamPos.x - this.currentLookAt.x
+		);
+
+		angle -= dx * rotSpeed;
+
+		const targetX = this.currentLookAt.x + Math.cos(angle) * radius;
+		const targetZ = this.currentLookAt.z + Math.sin(angle) * radius;
+		const targetY = Math.max(1.8, Math.min(26.0, this.currentCamPos.y + dy * 0.03));
+
+		this.targetCamPos.set(targetX, targetY, targetZ);
+		this.currentCamPos.set(targetX, targetY, targetZ);
+		this.camera.position.set(targetX, targetY, targetZ);
+		this.camera.lookAt(this.currentLookAt);
+	}
+
+	public zoom(delta: number) {
+		this.isInteractiveMode = true;
+		const dir = new THREE.Vector3().subVectors(this.currentCamPos, this.currentLookAt).normalize();
+		const currentDist = this.currentCamPos.distanceTo(this.currentLookAt);
+		const newDist = Math.max(6.0, Math.min(36.0, currentDist + delta * 2.0));
+
+		this.targetCamPos.copy(this.currentLookAt).addScaledVector(dir, newDist);
+		this.currentCamPos.copy(this.targetCamPos);
+		this.camera.position.copy(this.currentCamPos);
 	}
 
 	public setExplode(active: boolean) {
 		this.isExploded = active;
 		this.targetExplode = active ? 1.0 : 0.0;
+		this.emitTelemetry();
 	}
 
 	public setXRay(active: boolean) {
 		this.isXRay = active;
-		this.featuredBatteryPack.traverse((child) => {
-			if ((child as THREE.Mesh).isMesh) {
-				const mesh = child as THREE.Mesh;
+		this.scene.traverse((child) => {
+			if (child instanceof THREE.Mesh) {
 				if (active) {
-					const wireMat = this.wireframeMaterials.get(mesh);
-					if (wireMat) mesh.material = wireMat;
+					const wireMat = this.wireframeMaterials.get(child);
+					if (wireMat) child.material = wireMat;
 				} else {
-					const defMat = this.defaultMaterials.get(mesh);
-					if (defMat) mesh.material = defMat;
+					const defMat = this.defaultMaterials.get(child);
+					if (defMat) child.material = defMat;
 				}
 			}
 		});
+		this.emitTelemetry();
 	}
 
 	public toggleKinematics() {
 		this.isKinematicsActive = !this.isKinematicsActive;
+		this.emitTelemetry();
 	}
 
 	public toggleAutoRotate() {
 		this.isAutoRotate = !this.isAutoRotate;
-		this.controls.autoRotate = this.isAutoRotate;
-		this.controls.autoRotateSpeed = 1.4;
+		this.emitTelemetry();
 	}
 
-	public zoom(delta: number) {
-		const dir = new THREE.Vector3().subVectors(this.camera.position, this.controls.target).normalize();
-		this.camera.position.addScaledVector(dir, delta);
+	public setInteractiveMode(active: boolean) {
+		this.isInteractiveMode = active;
 	}
 
-	public rotateBy(dx: number, dy: number) {
-		const rotSpeed = 0.0055;
-		const target = this.controls?.target || this.currentLookAt;
-		const offset = new THREE.Vector3().subVectors(this.camera.position, target);
-		let radius = offset.length();
-		let theta = Math.atan2(offset.x, offset.z);
-		let phi = Math.acos(Math.max(-1, Math.min(1, offset.y / radius)));
+	public setScrollProgress(progress: number) {
+		if (this.isInteractiveMode) return;
+		// Smooth subtle isometric turntable orbit based on page scroll
+		const angle = Math.PI / 4 + progress * Math.PI * 0.65;
+		const radius = 26.0;
+		const camY = 14.5 + Math.sin(progress * Math.PI) * 2.0;
 
-		theta -= dx * rotSpeed;
-		phi = Math.max(0.12, Math.min(Math.PI / 2 - 0.04, phi - dy * rotSpeed));
-
-		offset.x = radius * Math.sin(phi) * Math.sin(theta);
-		offset.y = radius * Math.cos(phi);
-		offset.z = radius * Math.sin(phi) * Math.cos(theta);
-
-		this.camera.position.copy(target).add(offset);
-		this.camera.lookAt(target);
-		this.currentCamPos.copy(this.camera.position);
-		this.targetCamPos.copy(this.camera.position);
+		this.targetCamPos.set(
+			Math.cos(angle) * radius,
+			camY,
+			Math.sin(angle) * radius
+		);
+		this.targetLookAt.set(0, 0.8, 0);
 	}
 
-	// ----------------------------------------------------
-	// Animation Loop
-	// ----------------------------------------------------
+	private emitTelemetry() {
+		if (!this.onTelemetryUpdate) return;
 
-	private animate = () => {
-		if (this.isDisposed) return;
-		this.reqId = requestAnimationFrame(this.animate);
+		const azimuth = Math.round(
+			((Math.atan2(this.camera.position.z, this.camera.position.x) * 180) / Math.PI + 360) % 360
+		);
 
-		const delta = this.clock.getDelta();
-		const time = this.clock.getElapsedTime();
+		let status = 'CONTINUOUS_SYNTHESIS';
+		if (this.isExploded) status = 'DIORAMA_EXPLODED_INSPECTION';
+		else if (this.isXRay) status = 'WIREFRAME_CAD_ANALYSIS';
+		else if (!this.isKinematicsActive) status = 'KINEMATICS_PAUSED';
 
-		// 1. Conveyor transport movement
-		if (this.isKinematicsActive) {
-			this.movingPacksGroup.children.forEach((pack) => {
-				pack.position.x += delta * this.conveyorSpeed;
-				if (pack.position.x > 8.0) {
-					pack.position.x = -8.0;
-				}
-			});
-		}
-
-		// 2. Battery Pack Exploded View Smooth Layer Separation
-		this.explodeProgress += (this.targetExplode - this.explodeProgress) * 0.08;
-		if (this.explodeLayers.topCover) {
-			const e = this.explodeProgress;
-			// Top cover lifts high
-			this.explodeLayers.topCover.position.y = 0.62 + e * 1.8;
-			// BMS board lifts
-			this.explodeLayers.bmsBoard.position.y = 0.52 + e * 1.35;
-			// Busbars lift
-			this.explodeLayers.busbars.position.y = 0.44 + e * 0.95;
-			// Upper holder lifts
-			this.explodeLayers.holderUpper.position.y = 0.4 + e * 0.6;
-			// Cooling plate lowers
-			this.explodeLayers.coolingPlate.position.y = 0.055 - e * 0.35;
-			// Bottom tray lowers
-			this.explodeLayers.bottomTray.position.y = 0.0 - e * 0.7;
-		}
-
-		// 3. Laser Welding Beam Pulse & Glow
-		if (this.laserBeamMesh) {
-			const pulse = (Math.sin(time * 18.0) + 1) / 2;
-			(this.laserBeamMesh.material as THREE.MeshBasicMaterial).opacity = 0.65 + pulse * 0.35;
-			this.laserLight.intensity = 3.5 + pulse * 2.5;
-
-			// Move laser welding spot along busbars
-			const weldZ = Math.sin(time * 2.5) * 0.6;
-			this.laserBeamMesh.position.z = weldZ;
-			this.laserLight.position.z = weldZ;
-		}
-
-		// 4. Welding Sparks Physics
-		if (this.weldingSparks && this.isKinematicsActive) {
-			const count = this.sparkPositions.length / 3;
-			for (let i = 0; i < count; i++) {
-				this.sparkPositions[i * 3 + 0] += this.sparkVelocities[i * 3 + 0] * delta;
-				this.sparkPositions[i * 3 + 1] += this.sparkVelocities[i * 3 + 1] * delta;
-				this.sparkPositions[i * 3 + 2] += this.sparkVelocities[i * 3 + 2] * delta;
-
-				// Gravity pull
-				this.sparkVelocities[i * 3 + 1] -= 9.8 * delta;
-
-				// Reset if below tray
-				if (this.sparkPositions[i * 3 + 1] < 0.85) {
-					this.resetSpark(i);
-				}
-			}
-			this.weldingSparks.geometry.attributes.position.needsUpdate = true;
-		}
-
-		// 5. Camera Lerp
-		if (!this.isInteractiveMode) {
-			this.currentCamPos.lerp(this.targetCamPos, 0.048);
-			this.currentLookAt.lerp(this.targetLookAt, 0.048);
-			this.camera.position.copy(this.currentCamPos);
-			this.camera.lookAt(this.currentLookAt);
-
-			if (Math.abs(this.camera.fov - this.targetFov) > 0.1) {
-				this.camera.fov += (this.targetFov - this.camera.fov) * 0.05;
-				this.camera.updateProjectionMatrix();
-			}
-		} else {
-			this.controls.update();
-		}
-
-		// 6. Render
-		this.renderer.render(this.scene, this.camera);
-
-		// 7. Telemetry & Hotspots
-		this.updateTelemetry(time);
-		this.updateHotspotScreenCoordinates();
-	};
-
-	private updateTelemetry(time: number) {
-		this.frameCount++;
-		if (time - this.lastFpsUpdate >= 0.5) {
-			this.currentFps = Math.round(this.frameCount / (time - this.lastFpsUpdate));
-			this.frameCount = 0;
-			this.lastFpsUpdate = time;
-
-			if (this.onTelemetryUpdate) {
-				const dx = this.camera.position.x - this.currentLookAt.x;
-				const dz = this.camera.position.z - this.currentLookAt.z;
-				let azimuth = Math.round((Math.atan2(dx, dz) * 180) / Math.PI);
-				if (azimuth < 0) azimuth += 360;
-
-				this.onTelemetryUpdate({
-					camAzimuth: azimuth,
-					camFov: Math.round(this.camera.fov),
-					camElev: Number(this.camera.position.y.toFixed(2)),
-					fps: Math.min(60, this.currentFps),
-					oee: Number((97.2 + Math.sin(time * 0.6) * 1.4).toFixed(1)),
-					activeAxes: 12,
-					status: this.isExploded
-						? 'BATTERY_EXPLODED_INSPECTION'
-						: this.isXRay
-							? 'LITHIUM_XRAY_TELEMETRY'
-							: 'WELDING_CYCLE_NOMINAL'
-				});
-			}
-		}
-	}
-
-	private updateHotspotScreenCoordinates() {
-		if (!this.onHotspotScreenPositions) return;
-
-		const width = this.canvas.clientWidth;
-		const height = this.canvas.clientHeight;
-		if (width === 0 || height === 0) return;
-
-		const coords = BATTERY_HOTSPOTS.map((h) => {
-			const pos3 = new THREE.Vector3(...h.position);
-			pos3.project(this.camera);
-
-			const isVisible =
-				pos3.z < 1.0 && pos3.x >= -1.1 && pos3.x <= 1.1 && pos3.y >= -1.1 && pos3.y <= 1.1;
-
-			const screenX = ((pos3.x + 1) * width) / 2;
-			const screenY = ((-pos3.y + 1) * height) / 2;
-
-			return {
-				id: h.id,
-				x: Math.round(screenX),
-				y: Math.round(screenY),
-				visible: isVisible
-			};
+		this.onTelemetryUpdate({
+			camAzimuth: azimuth,
+			camFov: Math.round(this.camera.fov),
+			camElev: Number(this.camera.position.y.toFixed(2)),
+			fps: this.currentFps,
+			oee: 97.8,
+			activeAxes: 6,
+			status
 		});
-
-		this.onHotspotScreenPositions(coords);
 	}
 
 	private onWindowResize = () => {
-		if (!this.container || !this.renderer || !this.camera) return;
-		const width = this.container.clientWidth || window.innerWidth;
-		const height = this.container.clientHeight || window.innerHeight;
+		const width = this.container.clientWidth;
+		const height = this.container.clientHeight;
+		if (!width || !height) return;
 
 		this.camera.aspect = width / height;
 		this.camera.updateProjectionMatrix();
 		this.renderer.setSize(width, height);
 	};
 
-	public setInteractiveMode(enabled: boolean) {
-		this.isInteractiveMode = enabled;
-		this.controls.enabled = enabled;
-		if (enabled) {
-			this.controls.target.copy(this.currentLookAt);
-		}
-	}
-
 	public dispose() {
 		this.isDisposed = true;
-		if (this.reqId !== null) {
-			cancelAnimationFrame(this.reqId);
-		}
+		if (this.reqId) cancelAnimationFrame(this.reqId);
 		window.removeEventListener('resize', this.onWindowResize);
 
-		this.controls?.dispose();
-		this.renderer?.dispose();
-
-		this.scene?.traverse((obj) => {
-			if ((obj as THREE.Mesh).isMesh) {
-				const mesh = obj as THREE.Mesh;
-				mesh.geometry?.dispose();
-				if (Array.isArray(mesh.material)) {
-					mesh.material.forEach((m) => m.dispose());
-				} else {
-					mesh.material?.dispose();
-				}
-			}
-		});
+		this.controls.dispose();
+		this.renderer.dispose();
 	}
 }
