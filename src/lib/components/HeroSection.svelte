@@ -380,12 +380,12 @@
 
 					<button
 						type="button"
-						onclick={() => systemState.scrollToTarget('#factory-3d', -56)}
-						use:cursorHover={{ label: '[ 3D-ЦЕХ ]', variant: 'inspect' }}
+						onclick={() => systemState.scrollToTarget('#demo', -56)}
+						use:cursorHover={{ label: '[ ДЕМО ЗАВОДА ]', variant: 'inspect' }}
 						class="font-mono-tech flex items-center gap-2 border border-[var(--accent)] bg-[var(--accent)]/15 px-4 py-3 text-xs font-bold tracking-[0.08em] uppercase text-[var(--accent)] transition-all hover:bg-[var(--accent)] hover:text-[#F4F2EC]"
 					>
 						<span class="signal-pulse inline-block h-2 w-2 rounded-full bg-[var(--accent)]"></span>
-						<span>3D-Обзор Цеха</span>
+						<span>Демо Завода</span>
 						<span>↗</span>
 					</button>
 				</div>

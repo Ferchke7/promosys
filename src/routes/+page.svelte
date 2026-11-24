@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Factory3DBackground from '#lib/components/Factory3DBackground.svelte';
-	import Factory3DStudioSection from '#lib/components/Factory3DStudioSection.svelte';
+	import FactoryEcosystemSandbox from '#lib/components/FactoryEcosystemSandbox.svelte';
 	import HeroSection from '#lib/components/HeroSection.svelte';
 	import ScrollScrambleStatement from '#lib/components/ScrollScrambleStatement.svelte';
 	import KineticTelemetryMarquee from '#lib/components/KineticTelemetryMarquee.svelte';
@@ -17,7 +17,7 @@
 <ScrollScrambleStatement />
 <KineticTelemetryMarquee />
 <LivePlantBento />
-<Factory3DStudioSection />
+<FactoryEcosystemSandbox />
 <InteractiveModulesList />
 <PinnedProcessPipeline />
 <TelemetryArchitectureSection />

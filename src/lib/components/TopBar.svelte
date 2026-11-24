@@ -5,7 +5,7 @@
 	let stackMenuOpen = $state(false);
 
 	const navItems = [
-		{ label: '3D-Цех', href: '#factory-3d' },
+		{ label: 'Демо-Завод', href: '#demo' },
 		{ label: 'Сейчас', href: '#now' },
 		{ label: 'Модули', href: '#modules' },
 		{ label: 'Конвейер', href: '#pipeline' },
