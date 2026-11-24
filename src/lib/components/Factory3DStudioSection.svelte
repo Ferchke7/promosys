@@ -49,16 +49,16 @@
 			<div>
 				<div class="font-mono-tech flex items-center gap-3 text-xs tracking-[0.16em] text-[var(--accent)] uppercase">
 					<span class="signal-pulse inline-block h-2 w-2 rounded-full bg-[var(--accent)]"></span>
-					<span>05 // ЦИФРОВОЙ ДВОЙНИК · 3D-СТУДИЯ ЦЕХА</span>
+					<span>05 // ЦИФРОВОЙ ДВОЙНИК · ЛИНИЯ СБОРКИ БАТАРЕЙ</span>
 				</div>
 				<h2
 					class="font-industrial mt-3 text-3xl font-extrabold uppercase tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl"
 				>
-					ИНТЕРАКТИВНЫЙ ОБЗОР ЯЧЕЙКИ
+					ИНТЕРАКТИВНАЯ ЛИНИЯ СБОРКИ LI-ION БАТАРЕЙ
 				</h2>
 			</div>
 			<div class="font-mono-tech max-w-md text-xs leading-relaxed text-[var(--text-secondary)]">
-				Управляйте камерой в 3D: зажимайте <span class="text-[var(--text-primary)] font-semibold">ЛКМ для вращения</span>, <span class="text-[var(--text-primary)] font-semibold">колесо мыши для зума</span>. Нажимайте на контрольные точки оборудования для вывода паспорта и телеметрии.
+				Управляйте цифровым двойником линии: зажимайте <span class="text-[var(--text-primary)] font-semibold">ЛКМ для 3D-вращения</span>, <span class="text-[var(--text-primary)] font-semibold">колесо мыши для зума</span>. Включайте <span class="text-[var(--text-primary)] font-semibold">Взрыв-схему</span> для послойного контроля ячеек 21700, шин и BMS.
 			</div>
 		</div>
 
@@ -66,7 +66,7 @@
 		<div
 			class="relative mt-8 min-h-[580px] sm:min-h-[720px] w-full overflow-hidden border border-[rgba(244,242,236,0.22)] bg-transparent shadow-2xl cursor-grab active:cursor-grabbing select-none"
 			role="region"
-			aria-label="Интерактивная 3D модель роботизированного цеха"
+			aria-label="Интерактивная 3D модель линии производства аккумуляторов"
 			onpointerdown={onPointerDown}
 			onpointermove={onPointerMove}
 			onpointerup={onPointerUp}
@@ -91,12 +91,12 @@
 			>
 				<div class="flex items-center gap-3 bg-[#070709]/80 px-3 py-1.5 border border-[rgba(244,242,236,0.1)]">
 					<span class="inline-block h-2 w-2 rounded-full bg-[#00e5ff] animate-ping"></span>
-					<span class="text-[#F4F2EC] font-bold">ОПРОС ДАТЧИКОВ ЧПУ // 142 СТАНКА</span>
+					<span class="text-[#F4F2EC] font-bold">GIGAFACTORY PROMSYS // 48 ЯЧЕЕК 21700 НА МОДУЛЬ</span>
 				</div>
 				<div class="hidden sm:flex items-center gap-4 bg-[#070709]/80 px-3 py-1.5 border border-[rgba(244,242,236,0.1)]">
-					<span>ТАКТ: <b class="text-[#FF3B00]">1.42s</b></span>
-					<span>НАГРУЗКА: <b class="text-[#F4F2EC]">87.4%</b></span>
-					<span>OEE: <b class="text-[#00e5ff]">96.2%</b></span>
+					<span>ТАКТ СВАРКИ: <b class="text-[#FF3B00]">0.85s</b></span>
+					<span>ВЫХОД ГОДНЫХ: <b class="text-[#F4F2EC]">99.8%</b></span>
+					<span>OEE: <b class="text-[#00e5ff]">97.4%</b></span>
 				</div>
 			</div>
 
@@ -266,7 +266,7 @@
 
 		<!-- Hotspot Quick Selector Pills -->
 		<div class="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs">
-			<span class="text-[var(--text-muted)] text-[10px] tracking-[0.12em] uppercase mr-2">Узлы цеха:</span>
+			<span class="text-[var(--text-muted)] text-[10px] tracking-[0.12em] uppercase mr-2">Узлы линии аккумуляторов:</span>
 			{#each FACTORY_HOTSPOTS as spot}
 				<button
 					type="button"

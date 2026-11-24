@@ -42,7 +42,7 @@ test('production server renders PROMSYS landing page', async (t) => {
 	assert.match(html, /promsys_uz/);
 	assert.match(html, /ferchke@yandex\.ru/);
 	assert.match(html, /3D-ЦЕХ/i);
-	assert.match(html, /ИНТЕРАКТИВНЫЙ ОБЗОР ЯЧЕЙКИ/i);
+	assert.match(html, /ИНТЕРАКТИВНАЯ ЛИНИЯ СБОРКИ LI-ION БАТАРЕЙ/i);
 	assert.doesNotMatch(html, /TAKT \/\/ OS/);
 });
 

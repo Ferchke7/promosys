@@ -82,7 +82,7 @@
 
 	<!-- Corner ticks for high-tech aesthetic -->
 	<div class="pointer-events-none absolute top-20 left-4 text-[9px] font-mono text-[rgba(244,242,236,0.3)] uppercase tracking-[0.2em]">
-		+ [PROMSYS_CELL_04] // TASHKENT_PLANT
+		+ [PROMSYS_BATTERY_GIGA_01] // TASHKENT_PLANT
 	</div>
 	<div class="pointer-events-none absolute top-20 right-4 text-[9px] font-mono text-[rgba(244,242,236,0.3)] uppercase tracking-[0.2em]">
 		ETHERCAT_1MS · 6-AXIS · PBR
