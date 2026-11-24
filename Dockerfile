@@ -6,8 +6,8 @@ RUN corepack enable && corepack prepare pnpm@11.19.0 --activate
 
 FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* .npmrc* ./
-RUN pnpm install --ignore-scripts
+COPY package.json pnpm-lock.yaml* .npmrc* ./
+RUN pnpm install --frozen-lockfile || pnpm install
 
 FROM base AS builder
 WORKDIR /app
@@ -22,12 +22,9 @@ ENV PORT=3000
 ENV HOST=0.0.0.0
 
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.openai ./.openai
+COPY --from=builder /app/build ./build
 
 EXPOSE 3000
 
-CMD ["pnpm", "exec", "vinext", "start", "--port", "3000", "--hostname", "0.0.0.0"]
+CMD ["node", "build/index.js"]

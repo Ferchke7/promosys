@@ -10,6 +10,8 @@
 !/.yarn/versions/
 
 # Framework and build output
+/.svelte-kit/
+/build/
 /.next/
 /.vinext/
 /dist/

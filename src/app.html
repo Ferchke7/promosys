@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>PROMSYS // MES, WMS &amp; APS — Умное управление производством в Узбекистане</title>
+		<meta
+			name="description"
+			content="Отечественная MES и APS система PROMSYS для дискретного и серийного производства в Узбекистане. Планирование загрузки станков ЧПУ, сквозной OEE, интеграция с 1C и ПЛК."
+		/>
+		<meta name="keywords" content="PROMSYS, MES Узбекистан, WMS Ташкент, APS планирование, автоматизация производства, OEE, диспетчеризация цеха" />
+		<meta property="og:title" content="PROMSYS — MES, WMS &amp; APS для производства в Узбекистане" />
+		<meta
+			property="og:description"
+			content="Интеллектуальная система управления цехом, складом и планированием заказов. Сокращение простоев на 40%, сквозной OEE."
+		/>
+		<meta property="og:url" content="https://promosys.duda.uz" />
+		<meta property="og:image" content="https://promosys.duda.uz/og.png" />
+		<meta property="og:type" content="website" />
+		<link rel="canonical" href="https://promosys.duda.uz" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Pixelify+Sans:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&family=Tektur:wght@600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<script>
+			(function () {
+				try {
+					var stored = localStorage.getItem('promsys-theme') || localStorage.getItem('takt-theme');
+					if (stored === 'dark' || stored === 'light') {
+						document.documentElement.dataset.theme = stored;
+					}
+				} catch (e) {}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
