@@ -6,7 +6,8 @@ RUN corepack enable && corepack prepare pnpm@11.19.0 --activate
 
 FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml* .npmrc* ./
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* .npmrc* ./
+RUN pnpm config set minimum-release-age 0 || true
 RUN pnpm install --frozen-lockfile || pnpm install
 
 FROM base AS builder
