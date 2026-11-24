@@ -41,7 +41,37 @@ test('production server renders PROMSYS landing page', async (t) => {
 	assert.match(html, /\+998 \(77\) 117-66-96/);
 	assert.match(html, /promsys_uz/);
 	assert.match(html, /ferchke@yandex\.ru/);
+	assert.match(html, /3D-ЦЕХ/i);
+	assert.match(html, /ИНТЕРАКТИВНЫЙ ОБЗОР ЯЧЕЙКИ/i);
 	assert.doesNotMatch(html, /TAKT \/\/ OS/);
+});
+
+test('production server serves 3D models', async (t) => {
+	const server = spawn('node', ['build/index.js'], {
+		env: { ...process.env, PORT: String(TEST_PORT + 2), HOST: '127.0.0.1' },
+		stdio: 'ignore'
+	});
+
+	t.after(() => {
+		server.kill();
+	});
+
+	let healthy = false;
+	for (let i = 0; i < 20; i++) {
+		try {
+			const res = await fetch(`http://127.0.0.1:${TEST_PORT + 2}/models/factory_cell.glb`, { method: 'HEAD' });
+			if (res.status === 200) {
+				healthy = true;
+				break;
+			}
+		} catch {
+			await sleep(200);
+		}
+	}
+
+	assert.ok(healthy, 'Model endpoint did not respond with 200');
+	const headRes = await fetch(`http://127.0.0.1:${TEST_PORT + 2}/models/factory_cell.glb`, { method: 'HEAD' });
+	assert.equal(headRes.status, 200);
 });
 
 test('production server serves robots.txt and sitemap.xml', async (t) => {
