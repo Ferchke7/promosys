@@ -8,7 +8,7 @@ FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* .npmrc* ./
 RUN pnpm config set minimum-release-age 0 || true
-RUN pnpm install --frozen-lockfile || pnpm install
+RUN pnpm install --ignore-scripts
 
 FROM base AS builder
 WORKDIR /app
